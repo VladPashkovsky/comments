@@ -7,9 +7,9 @@ function App() {
 
   return (
     <div>
-      {/*<Login />*/}
-      {/*<Background />*/}
-      <QuestionForm />
+      <Login />
+      <Background />
+      {/*<QuestionForm />*/}
     </div>
   )
 }
