@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo } from 'react'
+import { useMemo } from 'react'
 import styles from './style.module.css'
 
 const Digit = ({ children }: { children: any }) => {
@@ -34,20 +34,25 @@ const Background = () => {
       '8961985471369854834985854834789618854834789618786187637'
   }, [])
 
+  const backToLogin = (event: any) => {
+    event.preventDefault()
+    const duration = 1500
+    const start = window.scrollY
+    const end = 0
+    const startTime = performance.now()
 
-  // const numbersRef = useRef<HTMLParagraphElement>(null);
+    function animate() {
+      const currentTime = performance.now()
+      const progress = (currentTime - startTime) / duration
+      const scrollY = start + (end - start) * progress
+      window.scrollTo(0, scrollY)
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
 
-  // useEffect(() => {
-  //   if (numbersRef.current) {
-  //     const numString = numbersRef.current.textContent || '';
-  //     const splitNum = numString.split('');
-  //
-  //     numbersRef.current.innerHTML = '';
-  //     splitNum.forEach((num) => {
-  //       numbersRef.current!.innerHTML += `<span>${num}</span>`;
-  //     });
-  //   }
-  // }, []);
+    animate()
+  }
 
   return (
     <section>
@@ -56,36 +61,8 @@ const Background = () => {
           <Digit key={index}>{num}</Digit>
         ))}
       </p>
+      <button className={styles.exit_button} onClick={backToLogin}>Exit</button>
     </section>
-
-    // <section>
-    //   <p ref={numbersRef} className="numbers">
-    //     1298745985471369854834789618786187638748698182386987358
-    //     2198745985471369854834985483478961878618763885471369854
-    //     9874598547136985483478961985471369854834985854834789618
-    //     7861876387486981823869873583698548349854834789618786187
-    //     2198745985471369854834985483478961878618763885471369854
-    //     1298745985471369854834789618786187638748698182386987358
-    //     7861876387486981823869873583698548349854834789618786187
-    //     4834985483478961878618763885483498548347896187861876387
-    //     2198745985471369854834985483478961878618763885471369854
-    //     1298745985471369854834789618786187638748698182386987358
-    //     9874598547136985483478961985471369854834985854834789618
-    //     8651478632149387416978513597589614987456387456981238767
-    //     4834985483478961878618763885483498548347896187861876387
-    //     4789618786187638748698182386987358851359758961487459854
-    //     2198745985471369854834985483478961878618763885471369854
-    //     1298745985471369854834789618786187638748698182386987358
-    //     9874598547136985483478961985471369854834985854834789618
-    //     8651478632149387416978513597589614987456387456981238767
-    //     4834985483478961878618763885483498548347896187861876387
-    //     4789618786187638748698182386987358851359758961487459854
-    //     2198745985471369854834985483478961878618763885471369854
-    //     1298745985471369854834789618786187638748698182386987358
-    //     9874598547136985483478961985471369854834985854834789618
-    //     8961985471369854834985854834789618854834789618786187637
-    //   </p>
-    // </section>
   )
 }
 

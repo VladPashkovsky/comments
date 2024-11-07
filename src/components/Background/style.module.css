@@ -48,3 +48,23 @@ section {
     0 0 160px #0f0;
     z-index: 10;
 }
+
+.exit_button {
+    position: absolute;
+    top: 10vh;
+    right: 13vw;
+    width: 10vw;
+    color: #111;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    background: #45f3ff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.exit_button:hover {
+    box-shadow: 0 0 10px #45f3ff, 0 0 60px #45f3ff;
+}
