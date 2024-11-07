@@ -1,5 +1,5 @@
 import { useEffect, useRef, useMemo } from 'react'
-import './style.css'
+import styles from './style.module.css'
 
 const Digit = ({ children }: { children: any }) => {
   return <span>{children}</span>
@@ -51,7 +51,7 @@ const Background = () => {
 
   return (
     <section>
-      <p className="numbers">
+      <p className={styles.numbers}>
         {numString.split('').map((num, index) => (
           <Digit key={index}>{num}</Digit>
         ))}

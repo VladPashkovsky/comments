@@ -1,0 +1,22 @@
+.login_enter {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_form {
+    position: absolute;
+}
+
+.background {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forms {
+    position: absolute;
+
+}

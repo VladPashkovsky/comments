@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import './style.css'
+import styles from './style.module.css'
 
 const ParallaxEnter = () => {
   // let text = document.getElementById("text");
@@ -38,16 +38,16 @@ const ParallaxEnter = () => {
 
   return (
     <>
-      <header id="header">
-        <a href="#" className="logo">Space</a>
+      <header id={styles.header}>
+        <a href="#" className={styles.logo}>Space</a>
         <ul>
-          <li><a href="#" className="active">Home</a></li>
+          <li><a href="#" className={styles.active}>Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
           <li><a href="#">Blog</a></li>
         </ul>
       </header>
-      <section id="scene">
+      <section id={styles.scene}>
         <img src="/parallax/images/basic_space.jpg" alt="space" />
         <h2 id="text" ref={textRef}>Space is near</h2>
         {/*<img src="/parallax/images/01.png" id="img1" alt="01.png" ref={img1Ref} />*/}

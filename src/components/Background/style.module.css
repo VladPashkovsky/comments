@@ -14,7 +14,8 @@ section {
     height: 100vh;
     width: 100%;
     overflow: hidden;
-    background: #23242a;
+    background: #000000;
+    /*background: #23242a;*/
     /*background: #0e0e0e;*/
 }
 
