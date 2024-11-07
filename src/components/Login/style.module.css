@@ -188,6 +188,9 @@
 }
 
 .box form input[type="submit"] {
+    position: absolute;
+    right: 10%;
+    bottom: 15%;
     border: none;
     outline: none;
     padding: 9px 25px;

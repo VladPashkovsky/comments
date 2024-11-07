@@ -17,10 +17,10 @@ const Login = () => {
           <span>Password</span>
           <i></i>
         </div>
-        <div className={styles.links}>
-          <a href="#">Forgot Password?</a>
-          <a href="#">Sign Up</a>
-        </div>
+        {/*<div className={styles.links}>*/}
+        {/*  <a href="#">Forgot Password?</a>*/}
+        {/*  <a href="#">Sign Up</a>*/}
+        {/*</div>*/}
         <input type="submit" value="Login" />
       </form>
     </div>
