@@ -48,10 +48,10 @@ body {
 
 @keyframes rotating {
     0% {
-        --a: 0deg;
+        --a: 360deg;
     }
     100% {
-        --a: 360deg;
+        --a: 0deg;
     }
 }
 

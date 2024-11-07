@@ -31,7 +31,8 @@
     left: -50%;
     width: 380px;
     height: 420px;
-    background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+    /*background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);*/
+    background: linear-gradient(0deg, transparent, transparent, #972d10, #972d10, #972d10);
     z-index: 1;
     transform-origin: bottom right;
     animation: animate 6s linear infinite;
@@ -44,7 +45,8 @@
     left: -50%;
     width: 380px;
     height: 420px;
-    background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+    /*background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);*/
+    background: linear-gradient(0deg, transparent, transparent, #972d10, #972d10, #972d10);
     z-index: 1;
     transform-origin: bottom right;
     animation: animate 6s linear infinite;
@@ -64,7 +66,8 @@
     left: -50%;
     width: 380px;
     height: 420px;
-    background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+    /*background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);*/
+    background: linear-gradient(0deg, transparent, transparent, #feb450, #feb450, #feb450);
     z-index: 1;
     transform-origin: bottom right;
     animation: animate 6s linear infinite;
@@ -78,7 +81,8 @@
     left: -50%;
     width: 380px;
     height: 420px;
-    background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+    /*background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);*/
+    background: linear-gradient(0deg, transparent, transparent, #feb450, #feb450, #feb450);
     z-index: 1;
     transform-origin: bottom right;
     animation: animate 6s linear infinite;
