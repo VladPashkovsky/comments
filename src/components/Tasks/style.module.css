@@ -184,6 +184,32 @@ body {
     overflow: auto;
 }
 
+.responseForm {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 75vh;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+}
+
+.responseItem {
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 10vh;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    font-size: 1em;
+    color: white;
+}
+
+
 /*.loginBx input {*/
 /*    width: 100%;*/
 /*    padding: 10px 20px;*/

@@ -1,6 +1,10 @@
 import styles from './style.module.css'
+import useStore from '../QuestionForm/store.ts'
+
 
 const Tasks = () => {
+  const {todos} = useStore();
+
   return (
     <div className={styles.box}>
       <div className={styles.user}>
@@ -14,7 +18,15 @@ const Tasks = () => {
           {/*<h2><i>TASKS</i></h2>*/}
           <div className={styles.inptBtn}>
             {/*<input type="text" placeholder="Response" />*/}
-            <textarea placeholder="Response" />
+            {/*<textarea placeholder="Response" />*/}
+
+            <div className={styles.responseForm}>
+              {todos.map((todo) => (
+                <div key={todo.id} className={styles.responseItem}>{todo.text}</div>
+              ))}
+
+            </div>
+
             {/*<button>ADD</button>*/}
           </div>
         </form>
