@@ -1,6 +1,16 @@
 import styles from './style.module.css'
+import {useRef, useState} from 'react'
 
 const QuestionForm = () => {
+  const [height, setHeight] = useState('100px');
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleInput = () => {
+    if (textareaRef.current) {
+      setHeight(`${textareaRef.current.scrollHeight}px`);
+    }
+  }
+
   return (
     <div className={styles.box}>
       <div className={styles.user}>
@@ -9,9 +19,10 @@ const QuestionForm = () => {
       </div>
       <div className={styles.login}>
         <form className={styles.loginBx}>
-          <h2><i>Questions</i></h2>
+          <h2><i>Request</i></h2>
           <div className={styles.inptBtn}>
-            <input type="text" placeholder="Question" />
+            <textarea
+              className={styles.textarea} placeholder="Question" />
             <button>ADD</button>
           </div>
         </form>
