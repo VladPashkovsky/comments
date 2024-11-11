@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Source Code Pro', monospace;
+
 }
 
 section {
@@ -15,8 +16,21 @@ section {
     width: 100%;
     overflow: hidden;
     background: #000000;
+    /*background: url("public/parallax/images/window_final.png") no-repeat center center;*/
     /*background: #23242a;*/
     /*background: #0e0e0e;*/
+
+}
+
+.windowpic {
+    position: absolute;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    height: 100vh;
+    width: 100vw;
+    background: url("../../../public/parallax/images/window_final.png") no-repeat center center;
+
 }
 
 .numbers {
@@ -25,6 +39,7 @@ section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    /*background: url("public/parallax/images/window_final.png") no-repeat center center;*/
 }
 
 .numbers span {
@@ -32,7 +47,8 @@ section {
     font-size: 3em;
     font-weight: 900;
     /*color: rgba(255, 255, 255, 0.05);*/
-    color: rgba(35, 36, 42, 0.05);
+    /*color: rgba(35, 36, 42, 0.05);*/
+    color: transparent;
     line-height: 0.9em;
     transition: 1s;
     user-select: none;

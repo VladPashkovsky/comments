@@ -4,6 +4,7 @@ import Background from '../components/Background'
 import QuestionForm from '../components/QuestionForm'
 import ParallaxEnter from '../components/ParallaxEnter'
 import Tasks from '../components/Tasks'
+import List from '../components/List'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <div className={styles.form_question}>
             <QuestionForm />
           </div>
+        {/*<List />*/}
 
 
         {/*</div>*/}

@@ -56,11 +56,18 @@ const Background = () => {
 
   return (
     <section>
-      <p className={styles.numbers}>
-        {numString.split('').map((num, index) => (
-          <Digit key={index}>{num}</Digit>
-        ))}
-      </p>
+
+      <div className={styles.windowpic}> </div>
+
+        <p className={styles.numbers}>
+          {numString.split('').map((num, index) => (
+            <Digit key={index}>{num}</Digit>
+          ))}
+        </p>
+
+
+
+
       <button className={styles.exit_button} onClick={backToLogin}>Exit</button>
     </section>
   )
