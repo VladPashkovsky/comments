@@ -4,7 +4,6 @@ import useStore from './store.ts'
 import { Todo } from './store.ts'
 
 
-
 const QuestionForm = () => {
   const [newTodo, setNewTodo] = useState('');
   const { addTodo } = useStore();

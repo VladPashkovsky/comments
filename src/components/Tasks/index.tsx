@@ -3,7 +3,7 @@ import useStore from '../QuestionForm/store.ts'
 
 
 const Tasks = () => {
-  const {todos} = useStore();
+  const { todos } = useStore()
 
   return (
     <div className={styles.box}>
@@ -21,12 +21,19 @@ const Tasks = () => {
             {/*<textarea placeholder="Response" />*/}
 
             <div className={styles.responseForm}>
-              {todos.map((todo) => (
-                <div key={todo.id} className={styles.responseItem}>{todo.text}</div>
+              {/*{todos.map((todo) => (*/}
+              {/*  <div key={todo.id} className={styles.responseItem}>*/}
+              {/*    <p className={styles.todoText}>{todo.text}</p>*/}
+              {/*  </div>*/}
+              {/*))}*/}
+
+              {todos.map((todo, index) => (
+                <div key={todo.id} className={styles.responseItem}
+                     ref={index === todos.length - 1 ? (node) => node && node.scrollIntoView({ behavior: 'smooth' }) : null}>
+                  <p className={styles.todoText}>{todo.text}</p>
+                </div>
               ))}
-
             </div>
-
             {/*<button>ADD</button>*/}
           </div>
         </form>
