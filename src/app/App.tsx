@@ -26,7 +26,7 @@ function App() {
           <div className={styles.form_question}>
             <QuestionForm />
           </div>
-        {/*<List />*/}
+        <List />
 
 
         {/*</div>*/}

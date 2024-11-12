@@ -1,3 +1,48 @@
-.windowpic {
-
+.container_window {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 63vw;
+    width: 23vw;
+    height: 51vh;
+    /*border: 1px solid white;*/
+    background: transparent;
 }
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("public/parallax/images/stars.png") no-repeat center center;
+    animation: fade-in-out 4s infinite;
+    transition: opacity 0.5s ease-in-out;
+    animation-delay: 2s;
+    animation-duration: 6s;
+}
+
+.stars_two {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*background: url("public/parallax/images/stars.png") no-repeat center center;*/
+    background-image: linear-gradient(180deg, transparent, transparent), url("public/parallax/images/stars.png");
+    background-size: cover;
+    animation: fade-in-out 4s infinite;
+    transition: opacity 0.5s ease-in-out;
+    animation-delay: 6s;
+    animation-duration: 6s;
+}
+
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
