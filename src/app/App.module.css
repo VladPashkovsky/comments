@@ -40,3 +40,31 @@
     position: absolute;
     left: 69vw;
 }
+
+.list_background {
+    position: absolute;
+    width: 28vw;
+    height: 76vh;
+    /*border: 1px solid red;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 63vw;
+}
+
+.form_list {
+    /*position: absolute;*/
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+    /*border: 1px solid #8ee36d;*/
+    max-height: 63vh;
+    /*width: 30vw;*/
+    /*right: 63.5vw;*/
+    padding-right: 2vw;
+    /*padding-left: 2vw;*/
+    overflow-y: auto;
+    overflow-x: auto;
+    -webkit-scrollbar: none;
+    scrollbar-width: none;
+}
