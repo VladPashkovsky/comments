@@ -1,26 +1,49 @@
 import styles from './style.module.css'
-import { useState} from 'react'
+import { useState } from 'react'
 import useStore from './store.ts'
 import { Todo } from './store.ts'
 
 
 const QuestionForm = () => {
-  const [newTodo, setNewTodo] = useState('');
-  const { addTodo } = useStore();
+  const [newTodo, setNewTodo] = useState('')
+  const { addTodo } = useStore()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     const newTodoItem: Todo = {
       id: Date.now(),
       text: newTodo,
-    };
-    addTodo(newTodoItem);
-    setNewTodo('');
-  };
+    }
+
+    if (newTodo === '') {
+      return
+    }
+    addTodo(newTodoItem)
+
+    setNewTodo('')
+  }
+
+  const handleText = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    try {
+      const response = await fetch('https://fakerapi.it/api/v2/texts?_quantity=1&_characters=800')
+
+      const data = await response.json()
+      const answer = data.data[0].content
+      const newTodoItem: Todo = {
+        id: Date.now(),
+        text: answer,
+      }
+      addTodo(newTodoItem)
+      setNewTodo('')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNewTodo(event.target.value);
-  };
+    setNewTodo(event.target.value)
+  }
 
   return (
     <div className={styles.box}>
@@ -30,11 +53,12 @@ const QuestionForm = () => {
       </div>
       <div className={styles.login}>
         <form className={styles.loginBx} onSubmit={handleSubmit}>
-          <h2><i>Request</i></h2>
+          <h2><i>Record</i></h2>
           <div className={styles.inptBtn}>
             <textarea value={newTodo} onChange={handleInputChange}
-              className={styles.textarea} placeholder="Question" />
+                      className={styles.textarea} placeholder="Text..." />
             <button>ADD</button>
+            <button onClick={handleText}>Auto</button>
           </div>
         </form>
       </div>

@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 
 const List = () => {
-  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div className={styles.container_window}>

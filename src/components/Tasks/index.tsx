@@ -9,7 +9,7 @@ const Tasks = () => {
   <div className={styles.box}>
     <div className={styles.user}>
         {/*<span className={styles.online}></span>*/}
-        <span className={styles.user_info}>RESPONSE
+        <span className={styles.user_info}>RECORDS
           {/*<span className={styles.user_item}>Somebody</span> */}
         </span>
       </div>
