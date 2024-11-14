@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
 
 :root {
-    --yellow: #ffdd40;
+    --yellow: #b2e3e3;
     --dark: #2f313a;
     --deg: -86deg;
     --trans: all 0.4s ease 0s;
@@ -25,6 +25,12 @@ body *:after {
 }
 
 .content {
+    --yellow: #b2e3e3;
+    /*--dark: #2f313a;*/
+    --dark: #3c567c;
+    --deg: -86deg;
+    --trans: all 0.4s ease 0s;
+
     width: 90vmin;
 }
 
@@ -135,7 +141,8 @@ h3 {
     margin-top: -2.25em;
     left: 9vmin;
     padding: 0.5em 0.75em;
-    color: var(--yellow);
+    /*color: var(--yellow);*/
+    color: #ff2770;
     border-radius: 0.25em;
     font-size: 1.35em;
     transform-origin: left bottom;

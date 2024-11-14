@@ -79,6 +79,7 @@
 
 .list_button button:hover {
     box-shadow: 0 0 10px #3c567c, 0 0 60px #45f3ff;
+    color: white;
 }
 
 .list_background {
@@ -127,6 +128,7 @@
 
 .form_list.shifted {
     transform: translateX(12.7vw);
+    filter: blur(7px);
 }
 
 .form_list.unshifted {
