@@ -25,8 +25,9 @@ const QuestionForm = () => {
 
   const handleText = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
+    let charactersNumber = Math.floor(Math.random() * (800 - 300 + 1))
     try {
-      const response = await fetch('https://fakerapi.it/api/v2/texts?_quantity=1&_characters=800')
+      const response = await fetch(`https://fakerapi.it/api/v2/texts?_quantity=1&_characters=${charactersNumber}`)
 
       const data = await response.json()
       const answer = data.data[0].content

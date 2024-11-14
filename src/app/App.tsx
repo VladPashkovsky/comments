@@ -7,7 +7,17 @@ import Tasks from '../components/Tasks'
 import Stars from '../components/Stars'
 import List from '../components/List'
 
+import {useState} from 'react'
+
+
+
+
 function App() {
+  const [shifted, setShifted] = useState(false);
+
+  const handleButtonClick = () => {
+    setShifted(!shifted);
+  };
 
   return (
     <>
@@ -20,23 +30,25 @@ function App() {
 
       <div className={styles.background}>
         <Background />
-        {/*<div className={styles.forms}>*/}
-          <div className={styles.form_task}>
-            <Tasks />
-          </div>
-          <div className={styles.form_question}>
-            <QuestionForm />
-          </div>
+
+        <div className={styles.form_task}>
+          <Tasks />
+        </div>
+        <div className={styles.form_question}>
+          <QuestionForm />
+        </div>
         <Stars />
 
-        <div className={styles.list_background}>
-          <div className={styles.form_list}>
+
+        <div className={styles.list_button}>
+          <button onClick={handleButtonClick}>L I S T</button>
+        </div>
+        <div className={`${styles.list_background} ${shifted ? styles.shifted : styles.unshifted}`}>
+          <div className={`${styles.form_list} ${shifted ? styles.shifted : styles.unshifted}`}>
             <List />
           </div>
         </div>
 
-
-        {/*</div>*/}
       </div>
 
 

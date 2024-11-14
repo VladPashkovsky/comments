@@ -30,10 +30,12 @@ const Tasks = () => {
 
               {todos.map((todo, index) => (
                 <div key={todo.id} className={styles.responseItem}
-                     ref={index === todos.length - 1 ? (node) => node && node.scrollIntoView({ behavior: 'smooth' }) : null}>
+                     ref={index === todos.length - 1  ? (node) => node && node.scrollIntoView({ behavior: 'smooth' }) : null}>
                   <p className={styles.todoText}>{todo.text}</p>
                 </div>
               ))}
+
+
             </div>
             {/*<button>ADD</button>*/}
           </div>
