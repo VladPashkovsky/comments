@@ -43,7 +43,7 @@ function App() {
 
         <div className={styles.list_button}>
           {/*<button onClick={handleButtonClick}>L I S T</button>*/}
-          <EnergyButton onClick={handleButtonClick}/>
+          <EnergyButton />
         </div>
         <div className={`${styles.list_background} ${shifted ? styles.shifted : styles.unshifted}`}>
           <div className={`${styles.form_list} ${shifted ? styles.shifted : styles.unshifted}`}>

@@ -45,14 +45,17 @@
 .list_button {
     position: absolute;
     left: 20vw;
-    top: 12vh;
+    top: 12.5vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     /*border: 1px solid #c26de3;*/
     width: 8vw;
-    height: 5vh;
-
+    max-height: 4vh;
+    box-sizing: border-box;
+    padding: 5px;
+    cursor: pointer;
     z-index: 200;
 }
 

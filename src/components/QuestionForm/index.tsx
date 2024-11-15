@@ -31,6 +31,7 @@ const QuestionForm = () => {
 
       const data = await response.json()
       const answer = data.data[0].content
+
       const newTodoItem: Todo = {
         id: Date.now(),
         text: answer,

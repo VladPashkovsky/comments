@@ -17,6 +17,7 @@ const List = () => {
             <span className={styles.coFunderLabel}>Some NEw</span>
             <div className={styles.thumb}><img
               src="https://assets.codepen.io/3/internal/avatars/users/default.png?fit=crop&format=auto&height=120&width=120" />
+
             </div>
             <div className={styles.description}>
               <h3>Chris Coyier</h3>
