@@ -51,21 +51,24 @@ h2 {
             var(--yellow) 0 97%,
             #fff0 calc(97% + 1px) 100%
     );
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
     position: relative;
     list-style: none;
     display: inline-block;
     transform: scale(0.85);
     transition: var(--trans);
+    min-width: 20vw;
 }
 
-.member:nth-of-type(even) {
-    text-align: right;
-    background: linear-gradient(
-            -83deg,
-            var(--yellow) 0 97%,
-            #fff0 calc(97% + 1px) 100%
-    );
-}
+/*.member:nth-of-type(even) {*/
+/*    text-align: right;*/
+/*    background: linear-gradient(*/
+/*            -83deg,*/
+/*            var(--yellow) 0 97%,*/
+/*            #fff0 calc(97% + 1px) 100%*/
+/*    );*/
+/*}*/
 
 .thumb {
     width: 13vmin;
@@ -130,6 +133,7 @@ h2 {
 .description p {
     padding: 0 2em;
     margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 h3 {
@@ -150,7 +154,7 @@ h3 {
 
 .member:nth-of-type(even) h3 {
     left: inherit;
-    right: 9vmin;
+    right: 15vmin;
     transform: rotate(2deg);
     transform-origin: right bottom;
     background: linear-gradient(-182deg, #fff0 60%, var(--dark) 0 100%);
@@ -163,7 +167,20 @@ h3 {
 }
 
 .co-funder:after {
-    content: "CO-FUNDER";
+    /*content: "CO-FUNDER";*/
+    font-size: 0.75em;
+    position: absolute;
+    top: -1.5em;
+    background: var(--yellow);
+    right: 4em;
+    transform: rotate(3deg);
+    padding: 0.35em 0.75em 0.5em;
+    border-radius: 0.25em;
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.coFunderLabel {
     font-size: 0.75em;
     position: absolute;
     top: -1.5em;
