@@ -17,27 +17,48 @@ const List = () => {
 
       <ul className={styles.team}>
 
-        {todos.slice().reverse().map((todo, index) => (
 
-          <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}
-              ref={index === 0  ? (node) => node && node.scrollIntoView({ behavior: 'smooth' }) : null}
-          >
+        {todos.slice().reverse().map((todo, _) => (
+
+          <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}>
             <span className={styles.coFunderLabel}>Some NEw</span>
             <div className={styles.thumb}><img
-              // src="https://assets.codepen.io/3/internal/avatars/users/default.png?fit=crop&format=auto&height=120&width=120" />
               src={avatar} />
 
             </div>
             <div className={styles.description}>
               <h3>Chris Coyier</h3>
               <p>
-                {todo.text.length > 160 ? `${todo.text.substring(0, 160)}...` : todo.text}
-                <br /><a href="https://codepen.io/chriscoyier/">Delete</a>
+                {todo.text.length > 160 ? `${todo.text.substring(0, 160)}.....` : todo.text}
+                <br /><a>Delete</a>
               </p>
             </div>
           </li>
 
         ))}
+
+
+        {/*{todos.slice().reverse().map((todo, index) => (*/}
+
+        {/*  <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}*/}
+        {/*      ref={index === 0  ? (node) => node && node.scrollIntoView({ behavior: 'smooth' }) : null}*/}
+        {/*  >*/}
+        {/*    <span className={styles.coFunderLabel}>Some NEw</span>*/}
+        {/*    <div className={styles.thumb}><img*/}
+        {/*      // src="https://assets.codepen.io/3/internal/avatars/users/default.png?fit=crop&format=auto&height=120&width=120" />*/}
+        {/*      src={avatar} />*/}
+
+        {/*    </div>*/}
+        {/*    <div className={styles.description}>*/}
+        {/*      <h3>Chris Coyier</h3>*/}
+        {/*      <p>*/}
+        {/*        {todo.text.length > 160 ? `${todo.text.substring(0, 160)}.....` : todo.text}*/}
+        {/*        <br /><a href="https://codepen.io/chriscoyier/">Delete</a>*/}
+        {/*      </p>*/}
+        {/*    </div>*/}
+        {/*  </li>*/}
+
+        {/*))}*/}
 
         {/*<li className={`${styles.member} ${styles['co-funder']}`}>*/}
         {/*  <span className={styles.coFunderLabel}>Some NEw</span>*/}

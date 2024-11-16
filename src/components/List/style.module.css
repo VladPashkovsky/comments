@@ -128,12 +128,17 @@ h2 {
 
 .description {
     padding-top: 1vmin;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 .description p {
     padding: 0 2em;
     margin-bottom: 1em;
     margin-top: 1em;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    max-width: 100%;
 }
 
 h3 {
