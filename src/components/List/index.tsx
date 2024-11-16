@@ -1,8 +1,16 @@
 import styles from './style.module.css'
 import useStore from '../QuestionForm/store'
+import { createAvatar } from '@dicebear/core';
+import { openPeeps } from '@dicebear/collection';
 
 const List = () => {
   const {todos} = useStore()
+
+  let seed = Math.random().toString(36).slice(2, 11)
+  const avatar = createAvatar(openPeeps, { seed,
+    size: 128, skinColor: ['ffdbb4', 'edb98a', 'd08b5b'],
+  }).toDataUri()
+
 
   return (
     <div className={styles.content}>
@@ -16,7 +24,8 @@ const List = () => {
           >
             <span className={styles.coFunderLabel}>Some NEw</span>
             <div className={styles.thumb}><img
-              src="https://assets.codepen.io/3/internal/avatars/users/default.png?fit=crop&format=auto&height=120&width=120" />
+              // src="https://assets.codepen.io/3/internal/avatars/users/default.png?fit=crop&format=auto&height=120&width=120" />
+              src={avatar} />
 
             </div>
             <div className={styles.description}>
