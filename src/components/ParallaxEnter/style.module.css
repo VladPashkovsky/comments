@@ -21,7 +21,9 @@
 }
 
 #header .logo {
-    color: #094b65;
+    /*color: #094b65;*/
+    color: #ffffff;
+    text-shadow: 6px 6px 10px #7c3c5e;
     font-weight: 700;
     font-size: 2em;
     text-decoration: none;
@@ -41,13 +43,24 @@
 #header ul li a {
     text-decoration: none;
     padding: 6px 15px;
-    color: #094b65;
+    /*color: #094b65;*/
+    color: #ffffff;
     border-radius: 20px;
 }
 
+#header ul li a.link {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
+
+
 #header ul li a:hover,
 #header ul li a.active {
-    background-color: #094b65;
+    /*background-color: #094b65;*/
+    background-color: #3c567c;
     color: #fff;
 }
 

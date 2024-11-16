@@ -39,16 +39,17 @@ const ParallaxEnter = () => {
   return (
     <>
       <header id={styles.header}>
-        <a href="#" className={styles.logo}>Space</a>
+        <a href="#" className={styles.logo}>COMMENTS</a>
         <ul>
-          <li><a href="#" className={styles.active}>Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Blog</a></li>
+          {/*<li><a href="#" className={styles.active}>About</a></li>*/}
+          {/*<li><a href="#">About</a></li>*/}
+          {/*<li><a href="#">Contact</a></li>*/}
+          <li><a href="#" className={styles.link}>About</a></li>
+          <li><a href="#" className={styles.link}>Github</a></li>
         </ul>
       </header>
       <section id={styles.scene}>
-        <img src="/parallax/images/basic_space.jpg" alt="space" />
+      <img src="/parallax/images/basic_space.jpg" alt="space" />
         <h2 id="text" ref={textRef}>Space is near</h2>
         {/*<img src="/parallax/images/01.png" id="img1" alt="01.png" ref={img1Ref} />*/}
         <img src="/parallax/images/02_1.png" id="img2" alt="02.png" ref={img2Ref} />

@@ -154,6 +154,8 @@ body {
 
 .inptBtn {
     display: flex;
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
     width: 100%;
     gap: 7px;
 }
@@ -254,6 +256,8 @@ body {
     left: 15.7vw;
     top: 25vh;
 }
+
+
 
 .loginBx button:hover {
     box-shadow: 0 0 10px #45f3ff, 0 0 60px #45f3ff;

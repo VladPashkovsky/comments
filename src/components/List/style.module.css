@@ -141,6 +141,10 @@ h2 {
     max-width: 100%;
 }
 
+.description a {
+    cursor: pointer;
+}
+
 h3 {
     background: linear-gradient(182deg, #fff0 60%, var(--dark) 0 100%);
     display: inline;

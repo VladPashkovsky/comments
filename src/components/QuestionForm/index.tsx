@@ -55,7 +55,7 @@ const QuestionForm = () => {
       </div>
       <div className={styles.login}>
         <form className={styles.loginBx} onSubmit={handleSubmit}>
-          <h2><i>Record</i></h2>
+          <h2><i>Comment</i></h2>
           <div className={styles.inptBtn}>
             <textarea value={newTodo} onChange={handleInputChange}
                       className={styles.textarea} placeholder="Text..." />
