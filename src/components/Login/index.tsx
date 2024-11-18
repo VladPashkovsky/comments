@@ -3,7 +3,7 @@ import styles from './style.module.css'
 
 const Login = () => {
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     // window.scrollTo({
     //   top: window.innerHeight,

@@ -6,11 +6,8 @@ import ParallaxEnter from '../components/ParallaxEnter'
 import Tasks from '../components/Tasks'
 import Stars from '../components/Stars'
 import List from '../components/List'
-
 import {useState} from 'react'
 import EnergyButton from '../components/EnergyButton'
-
-
 
 
 function App() {
@@ -39,7 +36,6 @@ function App() {
           <QuestionForm />
         </div>
         <Stars />
-
 
         <div className={styles.list_button}>
           {/*<button onClick={handleButtonClick}>L I S T</button>*/}
