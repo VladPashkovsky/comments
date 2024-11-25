@@ -1,4 +1,5 @@
-import loginStore from '../../components/Login/loginStore.ts'
+import { authSlice, AuthState } from '../../components/Login/auth.slice.ts'
+import { useSelector } from 'react-redux'
 
 const BASE_URL = 'http://localhost:8000/api'
 
@@ -14,7 +15,9 @@ export const jsonApiInstance = async <T>(
 ) => {
   let headers = init?.headers ?? {}
 
-  const token = loginStore.getState().user?.accessToken
+  const token = useSelector((state: { auth: AuthState }) =>
+    authSlice.selectors.user(state)?.accessToken)
+
   if (token) {
     headers = {
       Authorization: `Bearer ${token}`,
