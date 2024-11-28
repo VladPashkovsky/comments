@@ -5,7 +5,7 @@ import { User } from '../../shared/models/types.ts'
 export type AuthState = {
   user: User & { accessToken: string, refreshToken: string } | null,
   isActivated: boolean,
-  loginError?: string | null,
+  loginError?: string | Error | null,
 }
 
 const initialAuthState: AuthState = {

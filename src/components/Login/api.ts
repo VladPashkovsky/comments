@@ -57,6 +57,9 @@
 import { queryOptions } from '@tanstack/react-query'
 import { jsonApiInstance } from '../../shared/api/api-instance.ts'
 import {User} from '../../shared/models/types.ts'
+import { useSelector } from 'react-redux';
+import {authSlice, AuthState} from './auth.slice.ts'
+
 
 export type UserDataLogin = Pick<User, 'name' | 'password'>
 export type UserData = Omit<User, 'id'>

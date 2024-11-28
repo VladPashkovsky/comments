@@ -15,11 +15,15 @@ export const loginThunk =
       user ?
         dispatch(authSlice.actions.login(user)) &&
         queryClient.setQueryData(autApi.getUserById(user.id).queryKey, user) &&
-        localStorage.setItem('userId', user.id) :
+        localStorage.setItem('token', user.accessToken) :
         dispatch(authSlice.actions.setError('Invalid login or password'))
 
-    } catch (e) {
-      dispatch(authSlice.actions.setError(e as string))
+    } catch (e: any) {
+      if (e instanceof Error) {
+        dispatch(authSlice.actions.setError(e.message))
+      } else {
+        dispatch(authSlice.actions.setError(e.toString()))
+      }
     }
   }
 
