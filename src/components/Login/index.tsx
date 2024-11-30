@@ -11,8 +11,8 @@ const Login = () => {
   const loginError = useAppSelector(authSlice.selectors.loginError)
   const isLoading = useLoginLoading()
 
-  const [inputNameValue, setInputNameValue] = useState('')
-  const [inputPassValue, setInputPassValue] = useState('')
+  const [inputNameValue, setInputNameValue] = useState<string>('')
+  const [inputPassValue, setInputPassValue] = useState<string>('')
   const [error, setError] = useState('')
 
 
@@ -60,12 +60,8 @@ const Login = () => {
     } catch (err) {
       const ifError = isErrorWithMessage(err)
       ifError && setError(err.data.message)
+      console.log(`error is: ${error}`)
     }
-
-
-
-
-
 
     // const duration = 1500
     // const start = window.scrollY
@@ -83,7 +79,7 @@ const Login = () => {
     // }
     //
     // animate()
-    console.log(`Error: ${error}`)
+    console.log(`Error: ${loginError}`)
   }
 
   // window.scrollTo({
@@ -114,12 +110,12 @@ const Login = () => {
       <form onSubmit={newHandleSubmit}>
         <h2>Sign in</h2>
         <div className={styles.inputBox}>
-          <input type="text" required onChange={(e) => setInputNameValue(e.target.value)} />
+          <input type="text"  onChange={(e) => setInputNameValue(e.target.value)} />
           <span>name</span>
           <i></i>
         </div>
         <div className={styles.inputBox}>
-          <input type="password" required onChange={(e) => setInputPassValue(e.target.value)} />
+          <input type="password"  onChange={(e) => setInputPassValue(e.target.value)} />
           <span>password</span>
           <i></i>
         </div>

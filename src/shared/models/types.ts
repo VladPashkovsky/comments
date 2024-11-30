@@ -29,3 +29,7 @@ export type ErrorWithMessage = {
     message: string
   }
 }
+
+export type UserDataLogin = Pick<User, 'name' | 'password'>
+export type UserData = Omit<User, 'id'>
+export type AuthResponse = User & { accessToken: string, refreshToken: string }

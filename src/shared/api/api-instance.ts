@@ -2,6 +2,8 @@ import { authSlice, AuthState } from '../../components/Login/auth.slice.ts'
 import { useSelector } from 'react-redux'
 import { createSelector } from '@reduxjs/toolkit'
 
+// const BASE_URL = import.meta.env.API_URL
+
 const BASE_URL = 'http://localhost:8000/api'
 
 class ApiError extends Error {
@@ -10,27 +12,11 @@ class ApiError extends Error {
   }
 }
 
-
 export const jsonApiInstance = async <T>(
   url: string,
   init?: RequestInit & { json?: unknown },
 ) => {
   let headers = init?.headers ?? {}
-
-  // const token = useSelector((state: { auth: AuthState }) =>
-  //   authSlice.selectors.user(state)?.accessToken)
-
-  // const token = createSelector(
-  //   authSlice.selectors.user,
-  //   (user) => user?.accessToken,
-  // )
-
-  // if (token) {
-  //   headers = {
-  //     Authorization: `Bearer ${token}`,
-  //     ...headers,
-  //   }
-  // }
 
   if (init?.json) {
     headers = {

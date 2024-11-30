@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { rootReducer } from '../../shared/redux.ts'
-import { User } from '../../shared/models/types.ts'
+import { User, AuthResponse } from '../../shared/models/types.ts'
 
 export type AuthState = {
-  user: User & { accessToken: string, refreshToken: string } | null,
+  user: AuthResponse | null,
   isActivated: boolean,
   loginError?: string | Error | null,
 }
@@ -23,7 +23,7 @@ export const authSlice = createSlice({
     loginError: (state) => state.loginError,
   },
   reducers: {
-    login: (state, action: PayloadAction<User & { accessToken: string, refreshToken: string }>) => {
+    login: (state, action: PayloadAction<AuthResponse>) => {
       state.user = action.payload
       state.isActivated = true
       state.loginError = null
