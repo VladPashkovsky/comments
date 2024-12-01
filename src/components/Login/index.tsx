@@ -4,12 +4,14 @@ import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
 import { loginThunk, useLoginLoading } from './login-thunk.ts'
 import styles from './style.module.css'
 import { authSlice } from './auth.slice.ts'
+import { useNavigate } from 'react-router'
 
 
 const Login = () => {
   const dispatch = useAppDispath()
   const loginError = useAppSelector(authSlice.selectors.loginError)
   const isLoading = useLoginLoading()
+  let navigate = useNavigate()
 
   const [inputNameValue, setInputNameValue] = useState<string>('')
   const [inputPassValue, setInputPassValue] = useState<string>('')
@@ -23,30 +25,30 @@ const Login = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-      // await sendLoginUser(currentUserData).unwrap()
+    // await sendLoginUser(currentUserData).unwrap()
 
-      // window.scrollTo({
-      //   top: window.innerHeight,
-      //   behavior: 'smooth'
-      // })
+    // window.scrollTo({
+    //   top: window.innerHeight,
+    //   behavior: 'smooth'
+    // })
 
 
-      const duration = 1500
-      const start = window.scrollY
-      const end = window.innerHeight
-      const startTime = performance.now()
+    const duration = 1500
+    const start = window.scrollY
+    const end = window.innerHeight
+    const startTime = performance.now()
 
-      function animate() {
-        const currentTime = performance.now()
-        const progress = (currentTime - startTime) / duration
-        const scrollY = start + (end - start) * progress
-        window.scrollTo(0, scrollY)
-        if (progress < 1) {
-          requestAnimationFrame(animate)
-        }
+    function animate() {
+      const currentTime = performance.now()
+      const progress = (currentTime - startTime) / duration
+      const scrollY = start + (end - start) * progress
+      window.scrollTo(0, scrollY)
+      if (progress < 1) {
+        requestAnimationFrame(animate)
       }
+    }
 
-      animate()
+    animate()
 
   }
 
@@ -102,6 +104,10 @@ const Login = () => {
   // }
   // animate()
 
+  const linkTo = (e: any) => {
+    e.preventDefault()
+    navigate(`/signup`)
+  }
 
   return (
     // <div className='login_container'>
@@ -110,18 +116,18 @@ const Login = () => {
       <form onSubmit={newHandleSubmit}>
         <h2>Sign in</h2>
         <div className={styles.inputBox}>
-          <input type="text"  onChange={(e) => setInputNameValue(e.target.value)} />
+          <input type="text" onChange={(e) => setInputNameValue(e.target.value)} />
           <span>name</span>
           <i></i>
         </div>
         <div className={styles.inputBox}>
-          <input type="password"  onChange={(e) => setInputPassValue(e.target.value)} />
+          <input type="password" onChange={(e) => setInputPassValue(e.target.value)} />
           <span>password</span>
           <i></i>
         </div>
         <div className={styles.links}>
           <a href="#">Forgot Password?</a>
-          <a href="#">Sign Up</a>
+          <a href="" onClick={linkTo}> Sign Up </a>
         </div>
         <input type="submit" value="Login" />
       </form>

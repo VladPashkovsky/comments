@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router'
 import { store } from '../shared/redux.ts'
 import { queryClient } from '../shared/api/query-client.ts'
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
@@ -32,10 +33,12 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <StrictMode>
         <Loader>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </Loader>
       </StrictMode>,
     </Provider>
     {/*<ReactQueryDevtools initialIsOpen={false} />*/}
-  </PersistQueryClientProvider>
+  </PersistQueryClientProvider>,
 )

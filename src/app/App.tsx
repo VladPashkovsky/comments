@@ -1,5 +1,6 @@
 import styles from './App.module.css'
 import Login from '../components/Login'
+import Registration from '../components/Registration'
 import Background from '../components/Background'
 import QuestionForm from '../components/QuestionForm'
 import ParallaxEnter from '../components/ParallaxEnter'
@@ -8,6 +9,7 @@ import Stars from '../components/Stars'
 import List from '../components/List'
 import {useState} from 'react'
 import EnergyButton from '../components/EnergyButton'
+import { Route, Routes } from 'react-router'
 
 
 function App() {
@@ -22,7 +24,10 @@ function App() {
       <div className={styles.login_enter}>
         <ParallaxEnter />
         <div className={styles.login_form}>
-          <Login />
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<Registration />} />
+          </Routes>
         </div>
       </div>
 
