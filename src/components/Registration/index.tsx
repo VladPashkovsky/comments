@@ -1,8 +1,8 @@
 import { useState } from 'react'
+import EnterForm from '../../shared/forms/EnterForm'
 import { isErrorWithMessage } from '../../shared/isErrorWithMessage.ts'
 import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
 import { loginThunk, useLoginLoading } from '../Login/login-thunk.ts'
-import styles from './style.module.css'
 import { authSlice } from '../Login/auth.slice.ts'
 import { useNavigate } from 'react-router'
 
@@ -44,29 +44,18 @@ const Registration = () => {
 
 
   return (
-    // <div className='login_container'>
-    <div className={styles.box}>
-      <span className={styles.borderLine}></span>
-      <form onSubmit={newHandleSubmit}>
-        <h2>Sign up</h2>
-        <div className={styles.inputBox}>
-          <input type="text" onChange={(e) => setInputNameValue(e.target.value)} />
-          <span>name</span>
-          <i></i>
-        </div>
-        <div className={styles.inputBox}>
-          <input type="password" onChange={(e) => setInputPassValue(e.target.value)} />
-          <span>password</span>
-          <i></i>
-        </div>
-        <div className={styles.links}>
-          <a href="#"></a>
-          <a href="#" onClick={linkTo}>Sign In</a>
-        </div>
-        <input type="submit" value="Sign Up" />
-      </form>
-    </div>
-    // </div>
+    <EnterForm
+      valueName={inputNameValue}
+      valuePass={inputPassValue}
+      onChangeName={(e) => setInputNameValue(e.target.value)}
+      onChangePass={(e) => setInputPassValue(e.target.value)}
+      handleSubmit={newHandleSubmit}
+      linkTo={linkTo}
+      formName={'Sign Up'}
+      fogPass={''}
+      signInUp={'Sign In'}
+      buttonName={'Sign Up'}
+    />
   )
 }
 

@@ -16,8 +16,8 @@ export const loginThunk =
 
       user ?
         dispatch(authSlice.actions.login(user.data)) &&
-        queryClient.setQueryData(AuthService.getUserQueryKey(user.data.id),
-          () => user.data.id ? AuthService.getUserById(user.data.id as unknown as UserDataId) : null) &&
+        // queryClient.setQueryData(AuthService.getUserQueryKey(user.data.id),
+        //   () => user.data.id ? AuthService.getUserById(user.data.id as unknown as UserDataId) : null) &&
         // queryClient.setQueryData(AuthService.getUserQueryKey(user.data.id), user.data) &&
         // queryClient.setQueryData(autApi.getUserById(user.data.id).queryKey, user.data) &&
         // queryClient.setQueryData(AuthService.getUserById(user.data.id as unknown as UserDataId).queryKey, user.data) &&
@@ -25,11 +25,12 @@ export const loginThunk =
         dispatch(authSlice.actions.setError('Invalid login or password'))
 
     } catch (e: any) {
-      if (e instanceof Error) {
-        dispatch(authSlice.actions.setError(e.message))
-      } else {
-        dispatch(authSlice.actions.setError(e.toString()))
-      }
+      // if (e instanceof Error) {
+      //   dispatch(authSlice.actions.setError(e.message))
+      // } else {
+      //   dispatch(authSlice.actions.setError(e.toString()))
+      // }
+       dispatch(authSlice.actions.setError(e))
     }
   }
 
