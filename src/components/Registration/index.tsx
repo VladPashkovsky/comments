@@ -28,13 +28,12 @@ const Registration = () => {
     e.preventDefault()
     try {
       dispatch(loginThunk(inputNameValue, inputPassValue))
+      navigate('/')
     } catch (err) {
       const ifError = isErrorWithMessage(err)
       ifError && setError(err.data.message)
       console.log(`error is: ${error}`)
     }
-
-    console.log(`Error: ${loginError}`)
   }
 
   const linkTo = (e: any) => {
@@ -51,7 +50,7 @@ const Registration = () => {
       onChangePass={(e) => setInputPassValue(e.target.value)}
       handleSubmit={newHandleSubmit}
       linkTo={linkTo}
-      formName={'Sign Up'}
+      formName={'Registration'}
       fogPass={''}
       signInUp={'Sign In'}
       buttonName={'Sign Up'}

@@ -5,13 +5,13 @@ import { User, AuthResponse } from '../../shared/models/types.ts'
 export type AuthState = {
   user: AuthResponse | null,
   isActivated: boolean,
-  loginError?: string | Error | null,
+  loginError?: string
 }
 
 const initialAuthState: AuthState = {
   user: null,
   isActivated: false,
-  loginError: null,
+  loginError: '',
 }
 
 export const authSlice = createSlice({
@@ -26,13 +26,13 @@ export const authSlice = createSlice({
     login: (state, action: PayloadAction<AuthResponse>) => {
       state.user = action.payload
       state.isActivated = true
-      state.loginError = null
+      state.loginError = ''
     },
 
     current: (state, action: PayloadAction<User & { accessToken: string, refreshToken: string }>) => {
       state.user = action.payload
       state.isActivated = true
-      state.loginError = null
+      state.loginError = ''
     },
     //
     // addUser: (state, action: PayloadAction<User & { accessToken: string, refreshToken: string }>) => {

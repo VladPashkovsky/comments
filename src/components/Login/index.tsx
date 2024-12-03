@@ -15,7 +15,7 @@ const Login = () => {
 
   const [inputNameValue, setInputNameValue] = useState<string>('')
   const [inputPassValue, setInputPassValue] = useState<string>('')
-  const [error, setError] = useState('')
+  const [error, setError] = useState<string>('')
 
 
   const currentUserData = {
@@ -52,15 +52,19 @@ const Login = () => {
 
   }
 
-  const newHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const newHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       dispatch(loginThunk(inputNameValue, inputPassValue))
+
+
     } catch (err) {
-      // const ifError = isErrorWithMessage(err)
-      // ifError && setError(err.data.message)
-      console.log(`error is: ${err}`)
+      const ifError = isErrorWithMessage(err)
+      ifError && setError(err.data.message)
+
     }
+
+    console.log(loginError)
 
     // if (!error) {
     //   const duration = 1500
@@ -98,7 +102,7 @@ const Login = () => {
     //
     // animate()
   }
-  console.log(`Error: ${loginError}`)
+
   // window.scrollTo({
   //   top: window.innerHeight,
   //   behavior: 'smooth'
@@ -124,19 +128,27 @@ const Login = () => {
     navigate(`/signup`)
   }
 
+
   return (
-    <EnterForm
-      valueName={inputNameValue}
-      valuePass={inputPassValue}
-      onChangeName={(e) => setInputNameValue(e.target.value)}
-      onChangePass={(e) => setInputPassValue(e.target.value)}
-      handleSubmit={newHandleSubmit}
-      linkTo={linkTo}
-      formName={'Sign in'}
-      fogPass={'Forgot Password?'}
-      signInUp={'Sign Up'}
-      buttonName={'Login'}
-    />
+    <>
+      <EnterForm
+        valueName={inputNameValue}
+        valuePass={inputPassValue}
+        onChangeName={(e) => setInputNameValue(e.target.value)}
+        onChangePass={(e) => setInputPassValue(e.target.value)}
+        handleSubmit={newHandleSubmit}
+        linkTo={linkTo}
+        formName={'Sign in'}
+        fogPass={'Forgot Password?'}
+        signInUp={'Sign Up'}
+        buttonName={'Login'}
+      />
+     <div style={{position: 'absolute', left: '50%', width: '150px', height: '150px', background: 'red'}}>
+       <span style={{margin: '5px'}}>{` The Error: ${loginError}`} - {`small: ${error}`}</span>
+     </div>
+    </>
+
+
   )
 }
 
