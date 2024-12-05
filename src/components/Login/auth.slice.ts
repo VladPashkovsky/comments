@@ -44,8 +44,12 @@ export const authSlice = createSlice({
     // },
     setError: (state, action: PayloadAction<string>) => {
       state.loginError = action.payload
+      state.isActivated = false
     },
-    logout: () => initialAuthState,
+    logout: (state) => {
+      state.user = null
+      state.isActivated = false
+    },
   },
   // extraReducers: (builder) => {
   //   builder

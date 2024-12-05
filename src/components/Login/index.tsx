@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import EnterForm from '../../shared/forms/EnterForm'
-import { isErrorWithMessage } from '../../shared/isErrorWithMessage.ts'
 import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
 import { loginThunk, useLoginLoading } from './login-thunk.ts'
 import { authSlice } from './auth.slice.ts'
@@ -12,122 +11,26 @@ const Login = () => {
   const loginError = useAppSelector(authSlice.selectors.loginError)
   const isLoading = useLoginLoading()
   let navigate = useNavigate()
-
   const [inputNameValue, setInputNameValue] = useState<string>('')
   const [inputPassValue, setInputPassValue] = useState<string>('')
-  const [error, setError] = useState<string>('')
+  const [error, setError] = useState<string | undefined>('')
 
 
-  const currentUserData = {
-    name: inputNameValue,
-    password: inputPassValue,
-  }
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    // await sendLoginUser(currentUserData).unwrap()
-
-    // window.scrollTo({
-    //   top: window.innerHeight,
-    //   behavior: 'smooth'
-    // })
-
-
-    const duration = 1500
-    const start = window.scrollY
-    const end = window.innerHeight
-    const startTime = performance.now()
-
-    function animate() {
-      const currentTime = performance.now()
-      const progress = (currentTime - startTime) / duration
-      const scrollY = start + (end - start) * progress
-      window.scrollTo(0, scrollY)
-      if (progress < 1) {
-        requestAnimationFrame(animate)
-      }
-    }
-
-    animate()
-
-  }
-
-  const newHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       dispatch(loginThunk(inputNameValue, inputPassValue))
-
-
+      setInputNameValue('')
+      setInputPassValue('')
     } catch (err) {
-      const ifError = isErrorWithMessage(err)
-      ifError && setError(err.data.message)
-
+      throw err
     }
-
-    console.log(loginError)
-
-    // if (!error) {
-    //   const duration = 1500
-    //   const start = window.scrollY
-    //   const end = window.innerHeight
-    //   const startTime = performance.now()
-    //
-    //   function animate() {
-    //     const currentTime = performance.now()
-    //     const progress = (currentTime - startTime) / duration
-    //     const scrollY = start + (end - start) * progress
-    //     window.scrollTo(0, scrollY)
-    //     if (progress < 1) {
-    //       requestAnimationFrame(animate)
-    //     }
-    //   }
-    //
-    //   animate()
-    // }
-
-    // const duration = 1500
-    // const start = window.scrollY
-    // const end = window.innerHeight
-    // const startTime = performance.now()
-    //
-    // function animate() {
-    //   const currentTime = performance.now()
-    //   const progress = (currentTime - startTime) / duration
-    //   const scrollY = start + (end - start) * progress
-    //   window.scrollTo(0, scrollY)
-    //   if (progress < 1) {
-    //     requestAnimationFrame(animate)
-    //   }
-    // }
-    //
-    // animate()
   }
-
-  // window.scrollTo({
-  //   top: window.innerHeight,
-  //   behavior: 'smooth'
-  // })
-  // const duration = 1500
-  // const start = window.scrollY
-  // const end = window.innerHeight
-  // const startTime = performance.now()
-  //
-  // function animate() {
-  //   const currentTime = performance.now()
-  //   const progress = (currentTime - startTime) / duration
-  //   const scrollY = start + (end - start) * progress
-  //   window.scrollTo(0, scrollY)
-  //   if (progress < 1) {
-  //     requestAnimationFrame(animate)
-  //   }
-  // }
-  // animate()
 
   const linkTo = (e: any) => {
     e.preventDefault()
     navigate(`/signup`)
   }
-
 
   return (
     <>
@@ -136,16 +39,16 @@ const Login = () => {
         valuePass={inputPassValue}
         onChangeName={(e) => setInputNameValue(e.target.value)}
         onChangePass={(e) => setInputPassValue(e.target.value)}
-        handleSubmit={newHandleSubmit}
+        handleSubmit={handleSubmit}
         linkTo={linkTo}
         formName={'Sign in'}
         fogPass={'Forgot Password?'}
         signInUp={'Sign Up'}
         buttonName={'Login'}
       />
-     <div style={{position: 'absolute', left: '50%', width: '150px', height: '150px', background: 'red'}}>
-       <span style={{margin: '5px'}}>{` The Error: ${loginError}`} - {`small: ${error}`}</span>
-     </div>
+      {/*<div style={{position: 'absolute', left: '50%', width: '150px', height: '150px', background: 'red'}}>*/}
+      {/*  <span style={{margin: '5px'}}>{` The Error: ${loginError}`} - {`small: ${error}`}</span>*/}
+      {/*</div>*/}
     </>
 
 

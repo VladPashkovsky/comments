@@ -1,4 +1,7 @@
 import { useMemo } from 'react'
+import { logoutThunk } from '../Login/logout-thunk.ts'
+import { useAppDispath } from '../../shared/redux.ts'
+import { animateUp } from '../../shared/UpDown.ts'
 import styles from './style.module.css'
 
 const Digit = ({ children }: { children: any }) => {
@@ -6,6 +9,8 @@ const Digit = ({ children }: { children: any }) => {
 }
 
 const Background = () => {
+  const dispatch = useAppDispath()
+
 
   const numString = useMemo(() => {
     return '1298745985471369854834789618786187638748698182386987358' +
@@ -36,37 +41,18 @@ const Background = () => {
 
   const backToLogin = (event: any) => {
     event.preventDefault()
-    const duration = 1500
-    const start = window.scrollY
-    const end = 0
-    const startTime = performance.now()
-
-    function animate() {
-      const currentTime = performance.now()
-      const progress = (currentTime - startTime) / duration
-      const scrollY = start + (end - start) * progress
-      window.scrollTo(0, scrollY)
-      if (progress < 1) {
-        requestAnimationFrame(animate)
-      }
-    }
-
-    animate()
+    dispatch(logoutThunk())
+    animateUp()
   }
 
   return (
     <section>
-
-      <div className={styles.windowpic}> </div>
-
-        <p className={styles.numbers}>
-          {numString.split('').map((num, index) => (
-            <Digit key={index}>{num}</Digit>
-          ))}
-        </p>
-
-
-
+      <div className={styles.windowpic}></div>
+      <p className={styles.numbers}>
+        {numString.split('').map((num, index) => (
+          <Digit key={index}>{num}</Digit>
+        ))}
+      </p>
 
       <button className={styles.exit_button} onClick={backToLogin}>Exit</button>
     </section>

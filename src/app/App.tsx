@@ -7,17 +7,18 @@ import ParallaxEnter from '../components/ParallaxEnter'
 import Tasks from '../components/Tasks'
 import Stars from '../components/Stars'
 import List from '../components/List'
-import {useState} from 'react'
+import { useState } from 'react'
 import EnergyButton from '../components/EnergyButton'
 import { Route, Routes } from 'react-router'
+import RequireAuth from '../shared/hok/loginHok.tsx'
 
 
 function App() {
-  const [shifted, setShifted] = useState(false);
+  const [shifted, setShifted] = useState(false)
 
   const handleButtonClick = () => {
-    setShifted(!shifted);
-  };
+    setShifted(!shifted)
+  }
 
   return (
     <>
@@ -25,7 +26,7 @@ function App() {
         <ParallaxEnter />
         <div className={styles.login_form}>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<RequireAuth children={<Login />} />} />
             <Route path="/signup" element={<Registration />} />
           </Routes>
         </div>
@@ -44,7 +45,7 @@ function App() {
 
         <div className={styles.list_button}>
           {/*<button onClick={handleButtonClick}>L I S T</button>*/}
-          <EnergyButton onClick={handleButtonClick}/>
+          <EnergyButton onClick={handleButtonClick} />
         </div>
         <div className={`${styles.list_background} ${shifted ? styles.shifted : styles.unshifted}`}>
           <div className={`${styles.form_list} ${shifted ? styles.shifted : styles.unshifted}`}>
