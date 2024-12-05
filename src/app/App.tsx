@@ -52,10 +52,7 @@ function App() {
             <List />
           </div>
         </div>
-
       </div>
-
-
     </>
   )
 }
