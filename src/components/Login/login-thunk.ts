@@ -4,7 +4,6 @@ import { queryClient } from '../../shared/api/query-client.ts'
 import AuthService from './auth-service.ts'
 import { authSlice } from './auth.slice.ts'
 import { UserDataId } from '../../shared/models/types.ts'
-import {isErrorWithMessage} from '../../shared/isErrorWithMessage.ts'
 
 
 export const loginThunk =

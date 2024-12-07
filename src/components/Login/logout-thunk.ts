@@ -1,9 +1,11 @@
 import { AppThunk } from '../../shared/redux.ts'
 import { queryClient } from '../../shared/api/query-client.ts'
 import { authSlice } from './auth.slice.ts'
+import AuthService from './auth-service.ts'
 
 export const logoutThunk = (): AppThunk => async (dispatch) => {
   try {
+    await AuthService.logout()
     dispatch(authSlice.actions.logout())
     queryClient.removeQueries()
     localStorage.removeItem('token')

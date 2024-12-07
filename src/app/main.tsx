@@ -15,7 +15,7 @@ import './index.css'
 // onlineManager.setOnline(navigator.onLine)
 
 const persister = createSyncStoragePersister({
-  storage: window.localStorage,
+  storage: window.localStorage
 })
 
 // prefetchAuth()
@@ -37,8 +37,8 @@ createRoot(document.getElementById('root')!).render(
             <App />
           </BrowserRouter>
         </Loader>
-      </StrictMode>,
+      </StrictMode>
     </Provider>
     {/*<ReactQueryDevtools initialIsOpen={false} />*/}
-  </PersistQueryClientProvider>,
+  </PersistQueryClientProvider>
 )

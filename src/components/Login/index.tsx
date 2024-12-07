@@ -8,12 +8,9 @@ import { useNavigate } from 'react-router'
 
 const Login = () => {
   const dispatch = useAppDispath()
-  const loginError = useAppSelector(authSlice.selectors.loginError)
-  const isLoading = useLoginLoading()
   let navigate = useNavigate()
   const [inputNameValue, setInputNameValue] = useState<string>('')
   const [inputPassValue, setInputPassValue] = useState<string>('')
-  const [error, setError] = useState<string | undefined>('')
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

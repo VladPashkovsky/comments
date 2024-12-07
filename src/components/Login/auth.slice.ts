@@ -34,32 +34,15 @@ export const authSlice = createSlice({
       state.isActivated = true
       state.loginError = ''
     },
-    //
-    // addUser: (state, action: PayloadAction<User & { accessToken: string, refreshToken: string }>) => {
-    //   state.user = action.payload
-    //   state.loginError = null
-    // },
-    // removeUser: (state) => {
-    //   state.user = null
-    // },
+
     setError: (state, action: PayloadAction<string>) => {
       state.loginError = action.payload
       state.isActivated = false
     },
+
     logout: (state) => {
       state.user = null
       state.isActivated = false
     },
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addMatcher(apiAuth.endpoints.login.matchFulfilled, (state, action) => {
-  //       state.user = action.payload
-  //       state.isActivated = true
-  //     })
-  //     .addMatcher(apiAuth.endpoints.current.matchFulfilled, (state, action) => {
-  //       state.user = action.payload
-  //       state.isActivated = true
-  //     })
-  // },
 }).injectInto(rootReducer)

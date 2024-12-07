@@ -7,16 +7,12 @@ export default class AuthService {
     return $api.post<AuthResponse>('/users/login', data)
   }
 
-  static async registration(data: UserDataLogin): Promise<AxiosResponse<AuthResponse>> {
-    return $api.post<AuthResponse>('/users/register', data)
-  }
-
   static async getUserById(data: UserDataId): Promise<AxiosResponse<AuthResponse>> {
     return $api.get<AuthResponse>(`/users/:${data}`)
   }
 
   static async logout(): Promise<void> {
-    return $api.post('/logout')
+    return $api.post('/users/logout')
   }
 
   static getUserQueryKey(id: string): string[] {

@@ -11,6 +11,7 @@ import { useState } from 'react'
 import EnergyButton from '../components/EnergyButton'
 import { Route, Routes } from 'react-router'
 import RequireAuth from '../shared/hok/loginHok.tsx'
+import RegisterAuth from '../shared/hok/registerHok.tsx'
 
 
 function App() {
@@ -27,7 +28,9 @@ function App() {
         <div className={styles.login_form}>
           <Routes>
             <Route path="/" element={<RequireAuth children={<Login />} />} />
-            <Route path="/signup" element={<Registration />} />
+            {/*<Route path="/" element={<Login />} />*/}
+            <Route path="/signup" element={<RegisterAuth children={<Registration />} />} />
+            {/*<Route path="/signup" element={<Registration />} />*/}
           </Routes>
         </div>
       </div>

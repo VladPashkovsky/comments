@@ -1,38 +1,26 @@
 import { useState } from 'react'
 import EnterForm from '../../shared/forms/EnterForm'
-import { isErrorWithMessage } from '../../shared/isErrorWithMessage.ts'
-import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
-import { loginThunk, useLoginLoading } from '../Login/login-thunk.ts'
-import { authSlice } from '../Login/auth.slice.ts'
+import { useAppDispath } from '../../shared/redux.ts'
+import { registerThunk } from './register-thunk.ts'
 import { useNavigate } from 'react-router'
 
 
 const Registration = () => {
-  const dispatch = useAppDispath()
-  const loginError = useAppSelector(authSlice.selectors.loginError)
-  const isLoading = useLoginLoading()
-  let navigate = useNavigate()
 
+  const dispatch = useAppDispath()
+  let navigate = useNavigate()
   const [inputNameValue, setInputNameValue] = useState<string>('')
   const [inputPassValue, setInputPassValue] = useState<string>('')
-  const [error, setError] = useState('')
-
-
-  const currentUserData = {
-    name: inputNameValue,
-    password: inputPassValue,
-  }
 
 
   const newHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      dispatch(loginThunk(inputNameValue, inputPassValue))
-      navigate('/')
+      dispatch(registerThunk(inputNameValue, inputPassValue))
+      setInputNameValue('')
+      setInputPassValue('')
     } catch (err) {
-      const ifError = isErrorWithMessage(err)
-      ifError && setError(err.data.message)
-      console.log(`error is: ${error}`)
+      throw err
     }
   }
 
