@@ -2,9 +2,14 @@ import styles from './style.module.css'
 import useStore from '../QuestionForm/store'
 import { createAvatar } from '@dicebear/core';
 import { openPeeps } from '@dicebear/collection';
+import { useAppSelector } from '../../shared/redux.ts'
+import { authSlice } from '../Login/auth.slice.ts'
 
 const List = () => {
   const {todos} = useStore()
+  const userData = useAppSelector(authSlice.selectors.user)
+  // @ts-ignore
+  const useName = userData?.user?.name
 
   let seed = Math.random().toString(36).slice(2, 11)
   const avatar = createAvatar(openPeeps, { seed,
@@ -22,12 +27,12 @@ const List = () => {
 
           <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}>
             <span className={styles.coFunderLabel}>Some NEw</span>
-            <div className={styles.thumb}><img
-              src={avatar} />
+            <div className={styles.thumb}><img src={avatar} />
 
             </div>
             <div className={styles.description}>
-              <h3>Chris Coyier</h3>
+              {/*<h3>Chris Coyier</h3>*/}
+              <h3>{useName}</h3>
               <p>
                 {todo.text.length > 160 ? `${todo.text.substring(0, 160)}.....` : todo.text}
                 <br /><a>Delete</a>

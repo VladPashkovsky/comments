@@ -2,11 +2,18 @@ import styles from './style.module.css'
 import { useState } from 'react'
 import useStore from './store.ts'
 import { Todo } from './store.ts'
+import {authSlice} from '../Login/auth.slice.ts'
+import { useAppSelector } from '../../shared/redux.ts'
+import { AuthResponse, User } from '../../shared/models/types.ts'
 
 
 const QuestionForm = () => {
   const [newTodo, setNewTodo] = useState('')
   const { addTodo } = useStore()
+
+  const userData  = useAppSelector(authSlice.selectors.user)
+  // @ts-ignore
+  const userName = userData?.user?.name
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -22,6 +29,7 @@ const QuestionForm = () => {
 
     setNewTodo('')
   }
+
 
   const handleText = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
@@ -51,7 +59,7 @@ const QuestionForm = () => {
     <div className={styles.box}>
       <div className={styles.user}>
         <span className={styles.online}></span>
-        <span className={styles.user_info}>User: <span className={styles.user_item}>Somebody</span> </span>
+        <span className={styles.user_info}>User: <span className={styles.user_item}>{userName}</span> </span>
       </div>
       <div className={styles.login}>
         <form className={styles.loginBx} onSubmit={handleSubmit}>
