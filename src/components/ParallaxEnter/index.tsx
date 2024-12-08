@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import {useNavigate} from 'react-router'
 import styles from './style.module.css'
 
 const ParallaxEnter = () => {
@@ -15,6 +16,7 @@ const ParallaxEnter = () => {
   //   img3.style.top = value * 0.25 + "px";
   // })
 
+  const navigate = useNavigate()
   const textRef = useRef<HTMLDivElement>(null)
   const img1Ref = useRef<HTMLImageElement>(null)
   const img2Ref = useRef<HTMLImageElement>(null)
@@ -39,7 +41,7 @@ const ParallaxEnter = () => {
   return (
     <>
       <header id={styles.header}>
-        <a href="#" className={styles.logo}>COMMENTS</a>
+        <a href="#" className={styles.logo} onClick={() => navigate('/')}>COMMENTS</a>
         <ul>
           {/*<li><a href="#" className={styles.active}>About</a></li>*/}
           {/*<li><a href="#">About</a></li>*/}

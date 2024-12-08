@@ -24,7 +24,7 @@ const Registration = () => {
     }
   }
 
-  const linkTo = (e: any) => {
+  function linkTo(e: any) {
     e.preventDefault()
     navigate(`/`)
   }

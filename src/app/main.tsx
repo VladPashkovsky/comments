@@ -31,13 +31,13 @@ createRoot(document.getElementById('root')!).render(
     }}
   >
     <Provider store={store}>
-      <StrictMode>
+      {/*<StrictMode>*/}
         <Loader>
           <BrowserRouter>
             <App />
           </BrowserRouter>
         </Loader>
-      </StrictMode>
+      {/*</StrictMode>*/}
     </Provider>
     {/*<ReactQueryDevtools initialIsOpen={false} />*/}
   </PersistQueryClientProvider>

@@ -16,7 +16,7 @@ const RegisterAuth: FC<RequireAuthProps> = ({ children }) => {
   let navigate = useNavigate()
 
   const [messageApi, contextHolderMessage] = message.useMessage()
-  const [messageRegApi, contextHolderRegMessage] = notification.useNotification()
+  const [notificationApi, contextHolderNotification] = notification.useNotification()
 
   useEffect(() => {
     if (registerError) {
@@ -28,28 +28,24 @@ const RegisterAuth: FC<RequireAuthProps> = ({ children }) => {
       })
     }
 
-    if (isRegistered) {
-      navigate('/')
-    }
-
-  }, [registerError, messageApi, messageRegApi, isRegistered])
+  }, [registerError, messageApi])
 
 
   useEffect(() => {
     if (isRegistered) {
-      messageRegApi.open({
-        type: 'success',
+      notificationApi.open({
         message: 'DONE!',
-        description: 'Sign In, please',
-        key: 'success',
-        duration: 5,
+        description: (<> Sign In, please <br/>
+                           or  <br/>
+                    Sign Up as new user </>),
       })
     }
-  }, [isRegistered, messageRegApi])
+
+  }, [isRegistered, notificationApi])
 
   return (
     <>
-      {contextHolderRegMessage}
+      {contextHolderNotification}
       {contextHolderMessage}
       {children}
     </>
