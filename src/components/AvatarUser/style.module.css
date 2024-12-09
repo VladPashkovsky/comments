@@ -1,0 +1,31 @@
+.around {
+    position: fixed;
+    height: 11vh;
+    width: 11vh;
+    top: 8vh;
+    left: 3vw;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    /*filter: blur(20px);*/
+    /*stroke: #45f3ff;*/
+    border: 5px solid #45f3ff;
+    border-radius: 50%;
+    z-index: 300;
+}
+
+.avatar {
+    /*position: absolute;*/
+    top: 8vh;
+    left: 3vw;
+    /*border: 2px solid red;*/
+    /*border-radius: 50%;*/
+}
+
+.around:hover {
+    box-shadow: 0 0 10px #45f3ff, 0 0 60px #45f3ff;
+    transition: 0.5s;
+    cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { MouseEventHandler, useRef } from 'react'
 import {useNavigate} from 'react-router'
 import styles from './style.module.css'
 
@@ -38,10 +38,15 @@ const ParallaxEnter = () => {
     }
   })
 
+  function headerGo(e: React.MouseEvent) {
+    e.preventDefault()
+    navigate('/')
+  }
+
   return (
     <>
       <header id={styles.header}>
-        <a href="#" className={styles.logo} onClick={() => navigate('/')}>COMMENTS</a>
+        <a href="" className={styles.logo} onClick={headerGo}>COMMENTS</a>
         <ul>
           {/*<li><a href="#" className={styles.active}>About</a></li>*/}
           {/*<li><a href="#">About</a></li>*/}

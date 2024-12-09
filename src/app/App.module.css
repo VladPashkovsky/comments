@@ -9,6 +9,11 @@
     align-items: center;
 }
 
+/*.login_avatar {*/
+/*    position: fixed;*/
+/*    */
+/*}*/
+
 .login_form {
     position: absolute;
 }
