@@ -2,9 +2,7 @@ import { authSlice, AuthState } from '../../components/Login/auth.slice.ts'
 import { useSelector } from 'react-redux'
 import { createSelector } from '@reduxjs/toolkit'
 
-// const BASE_URL = import.meta.env.API_URL
-
-const BASE_URL = 'http://localhost:8000/api'
+const API_URL = import.meta.env.VITE_API_URL
 
 class ApiError extends Error {
   constructor(public response: Response) {
@@ -26,7 +24,7 @@ export const jsonApiInstance = async <T>(
     init.body = JSON.stringify(init.json)
   }
 
-  const result = await fetch(`${BASE_URL}${url}`, {
+  const result = await fetch(`${API_URL}${url}`, {
     ...init, headers,
   })
 
