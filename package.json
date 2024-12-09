@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.705.0",
+    "@aws-sdk/lib-storage": "^3.705.0",
     "@dicebear/collection": "^9.2.2",
     "@dicebear/core": "^9.2.2",
     "@react-spring/web": "^9.7.5",
@@ -19,7 +21,9 @@
     "@tanstack/react-query-persist-client": "^5.61.3",
     "antd": "^5.22.3",
     "axios": "^1.7.7",
+    "cuid": "^3.0.0",
     "llamaai": "^1.0.4",
+    "mime-types": "^2.1.35",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^4.1.2",
@@ -29,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@types/mime-types": "^2.1.4",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
