@@ -18,7 +18,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState: initialAuthState,
   selectors: {
-    user: (state) => state.user,
+    user: (state: AuthState) => state.user as AuthResponse | null,
     isActivated: (state) => state.isActivated,
     loginError: (state) => state.loginError,
   },

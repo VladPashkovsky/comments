@@ -14,13 +14,14 @@ import RequireAuth from '../shared/hok/loginHok.tsx'
 import RegisterAuth from '../shared/hok/registerHok.tsx'
 import AvatarUser from '../components/AvatarUser'
 
-
 function App() {
+
   const [shifted, setShifted] = useState(false)
 
   const handleButtonClick = () => {
     setShifted(!shifted)
   }
+
 
   return (
     <>
@@ -29,6 +30,7 @@ function App() {
         <div className={styles.login_avatar}>
           <AvatarUser />
         </div>
+
         <div className={styles.login_form}>
           <Routes>
             <Route path="/" element={<RequireAuth children={<Login />} />} />

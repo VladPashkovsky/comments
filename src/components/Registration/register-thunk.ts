@@ -6,7 +6,7 @@ import { regSlice } from './reg.slice.ts'
 export const registerThunk =
   (name: string, password: string): AppThunk => async (dispatch) => {
     try {
-      const response = await RegService.registration({ name, password })
+      const response = await RegService.registration({ name, password})
 
       if (response.data) {
         dispatch(regSlice.actions.register(response.data))
