@@ -13,8 +13,11 @@ import { Route, Routes } from 'react-router'
 import RequireAuth from '../shared/hok/loginHok.tsx'
 import RegisterAuth from '../shared/hok/registerHok.tsx'
 import AvatarUser from '../components/AvatarUser'
+import {authSlice} from '../components/Login/auth.slice.ts'
+import { useAppSelector } from '../shared/redux.ts'
 
 function App() {
+   const isActivated = useAppSelector(authSlice.selectors.isActivated)
 
   const [shifted, setShifted] = useState(false)
 
@@ -27,13 +30,15 @@ function App() {
     <>
       <div className={styles.login_enter}>
         <ParallaxEnter />
-        <div className={styles.login_avatar}>
-          <AvatarUser />
-        </div>
+        {isActivated &&
+          <div className={styles.login_avatar}>
+            <AvatarUser />
+          </div>
+        }
 
         <div className={styles.login_form}>
           <Routes>
-            <Route path="/" element={<RequireAuth children={<Login />} />} />
+          <Route path="/" element={<RequireAuth children={<Login />} />} />
             {/*<Route path="/" element={<Login />} />*/}
             <Route path="/signup" element={<RegisterAuth children={<Registration />} />} />
             {/*<Route path="/signup" element={<Registration />} />*/}

@@ -11,8 +11,8 @@ const AvatarUser = () => {
   const notificationProp = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
-    delay: 1000,
-    duration: 2000
+    delay: 500,
+    duration: 1000
   })
 
   let seed = useMemo(() => Math.random().toString(36).slice(2, 11), [])
