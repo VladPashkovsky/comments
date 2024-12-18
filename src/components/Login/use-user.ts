@@ -19,7 +19,7 @@ export function useUser() {
 }
 
 
-export function useSuspenceUser() {
+export function useSuspenseUser() {
   const userId = useSelector(authSlice.selectors.user)
   // return useSuspenseQuery({
   //   ...autApi.getUserById(userId?.id!),

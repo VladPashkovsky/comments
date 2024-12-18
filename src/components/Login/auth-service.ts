@@ -15,7 +15,7 @@ export default class AuthService {
     return $api.post('/users/logout')
   }
 
-  static getUserQueryKey(id: string): string[] {
-    return ['user', id];
+  static getUserQueryKey(id: string) {
+    return ['user', id]
   }
 }

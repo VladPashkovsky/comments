@@ -1,7 +1,7 @@
 export interface User {
-  id: string,
-  name: string,
-  password: string,
+  id?: string,
+  name?: string,
+  password?: string,
   image?: string,
   user?: string | null,
   createdComment?: Comment[],

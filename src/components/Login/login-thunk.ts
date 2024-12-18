@@ -25,9 +25,9 @@ export const loginThunk =
 
       if (response.data) {
         dispatch(authSlice.actions.login(response.data))
-        dispatch(authSlice.actions.current(response.data))
-        queryClient.setQueryData(AuthService.getUserQueryKey(response.data.id),
-          () => response.data.id ? AuthService.getUserById(response.data.id as unknown as UserDataId) : null)
+        // dispatch(authSlice.actions.current(response.data))
+        // queryClient.setQueryData(AuthService.getUserQueryKey(response.data.id),
+        //   () => response.data.id ? AuthService.getUserById(response.data.id as unknown as UserDataId) : null)
         localStorage.setItem('token', response.data.accessToken)
       }
 
