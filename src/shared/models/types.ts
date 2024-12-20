@@ -3,7 +3,7 @@ export interface User {
   name?: string,
   password?: string,
   image?: string,
-  user?: string | null,
+  // user?: string | null,
   createdComment?: Comment[],
   Token?: Token[]
 }
