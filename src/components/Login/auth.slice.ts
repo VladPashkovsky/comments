@@ -31,6 +31,7 @@ export const authSlice = createSlice({
     loginError: (state) => state.loginError,
     isReg: (state) => state.isReg,
     regError: (state) => state.regError,
+    userImage: (state) => state.user?.image
   },
   reducers: {
     login: (state, action: PayloadAction<AuthResponse>) => {
@@ -66,17 +67,19 @@ export const authSlice = createSlice({
       state.isReg = false
     },
 
-    uploadAvatar: (state, action: PayloadAction<AuthResponse>) => {
-      // state.avatar = action.payload;
-      // state.uploadAvatarError = null;
-      state.user = action.payload
+    uploadAvatar: (state, action: PayloadAction<string>) => {
+      // console.log('Reducer uploadAvatar вызван!');
+      // console.log('action.payload:', action.payload);
+      // state.user!.image = action.payload
+
+      // state.user = { ...state.user, user: { ...state.user.user, image: action.payload } };
+      state.user!.image = action.payload
+
       state.isReg = true
       state.regError = ''
     },
 
     uploadAvatarError: (state, action: PayloadAction<string>) => {
-      // state.uploadAvatarError = action.payload;
-      // state.isReg = true
       state.regError = action.payload
       state.isReg = true
     },

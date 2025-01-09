@@ -2,25 +2,32 @@ import { Avatar } from 'antd'
 import styles from './style.module.css'
 import { createAvatar } from '@dicebear/core'
 import { openPeeps } from '@dicebear/collection'
-import * as React from 'react'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { animated, useSpring } from '@react-spring/web'
 import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
+import {useSelector} from 'react-redux'
 import { uploadAvatarThunk, uploadImageMutation } from './upload-avatar-thunk.ts'
 import { fileToDataURI, getImageSizes, selectFile, validateFileSize } from '../../shared/models/file.ts'
 import { authSlice, AuthState } from '../Login/auth.slice.ts'
+import { shallowEqual } from 'react-redux'
+import * as React from 'react'
 
 
 const IMAGE_MAX_SIZE = import.meta.env.VITE_IMAGE_MAX_SIZE
 
 const AvatarUser = () => {
   const dispatch = useAppDispath()
+
+
   const isUploadImage = uploadImageMutation()
-  const { user } = useAppSelector(authSlice.selectors.user) as AuthState
+  const {user} = useAppSelector(authSlice.selectors.user) as AuthState
   const userImage = useAppSelector(authSlice.selectors.userImage)
   const userId = user?.id
   const userAvatar = user?.image
-
+  const [image, setImage] = useState<string | undefined>(userAvatar)
+  console.log(`userAvatar: ${userAvatar}`)
+  console.log(`userImage: ${userImage}`)
+  console.log(`image: ${image}`)
   const notificationProp = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -64,6 +71,7 @@ const AvatarUser = () => {
     const file = await handleFileSelect()
     if (file) {
       dispatch(uploadAvatarThunk(file, userId as string))
+      setImage(userImage)
     }
   }
 
