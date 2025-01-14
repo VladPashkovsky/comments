@@ -1,9 +1,8 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import EnterForm from '../../shared/forms/EnterForm'
 import { useAppDispath } from '../../shared/redux.ts'
 import { registerThunk } from './register-thunk.ts'
 import { useNavigate } from 'react-router'
-
 
 const Registration = () => {
 
@@ -13,7 +12,7 @@ const Registration = () => {
   const [inputPassValue, setInputPassValue] = useState<string>('')
 
 
-  const newHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const newHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       dispatch(registerThunk(inputNameValue, inputPassValue))
@@ -31,18 +30,21 @@ const Registration = () => {
 
 
   return (
-    <EnterForm
-      valueName={inputNameValue}
-      valuePass={inputPassValue}
-      onChangeName={(e) => setInputNameValue(e.target.value)}
-      onChangePass={(e) => setInputPassValue(e.target.value)}
-      handleSubmit={newHandleSubmit}
-      linkTo={linkTo}
-      formName={'Registration'}
-      fogPass={''}
-      signInUp={'Sign In'}
-      buttonName={'Sign Up'}
-    />
+    <>
+      <EnterForm
+        valueName={inputNameValue}
+        valuePass={inputPassValue}
+        onChangeName={(e) => setInputNameValue(e.target.value)}
+        onChangePass={(e) => setInputPassValue(e.target.value)}
+        handleSubmit={newHandleSubmit}
+        linkTo={linkTo}
+        formName={'Registration'}
+        fogPass={''}
+        signInUp={'Sign In'}
+        buttonName={'Sign Up'}
+      />
+    </>
+
   )
 }
 

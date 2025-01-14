@@ -3,7 +3,7 @@ import styles from './style.module.css'
 import { createAvatar } from '@dicebear/core'
 import { openPeeps } from '@dicebear/collection'
 import * as React from 'react'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { animated, useSpring } from '@react-spring/web'
 import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
 import { uploadAvatarThunk, uploadImageMutation } from './upload-avatar-thunk.ts'
@@ -20,6 +20,10 @@ const AvatarUser = () => {
   const userImage = useAppSelector(authSlice.selectors.userImage)
   const userId = user?.id
   const userAvatar = user?.image
+  // const [image, setImage] = useState(userAvatar)
+  // console.log(`userImage: ${userImage}`);
+  // console.log(`userAvatar: ${userAvatar}`);
+  // console.log(`image: ${image}`);
 
   const notificationProp = useSpring({
     from: { opacity: 0 },
@@ -64,6 +68,7 @@ const AvatarUser = () => {
     const file = await handleFileSelect()
     if (file) {
       dispatch(uploadAvatarThunk(file, userId as string))
+      // setImage(userImage)
     }
   }
 
@@ -72,12 +77,14 @@ const AvatarUser = () => {
     <animated.div style={notificationProp}>
       <div className={styles.around}
            onClick={handleUpload}
-           aria-disabled={isUploadImage}
+           // aria-disabled={isUploadImage}
       >
-        <div className={styles.avatar}>
+        <div className={styles.avatar} aria-disabled={isUploadImage}>
+
           <Avatar
             size={100}
             src={userImage || !userImage && userAvatar || !userImage && !userAvatar && randomImage}
+            // src={image}
           />
         </div>
       </div>

@@ -56,25 +56,19 @@ export const authSlice = createSlice({
       state.isActivated = false
     },
 
-    register: (state, action: PayloadAction<AuthResponse>) => {
-      state.user = action.payload
-      state.isReg = true
-      state.regError = ''
-    },
-
-    registerError: (state, action: PayloadAction<string>) => {
-      state.regError = action.payload
-      state.isReg = false
-    },
+    // register: (state, action: PayloadAction<AuthResponse>) => {
+    //   state.user = action.payload
+    //   state.isReg = true
+    //   state.regError = ''
+    // },
+    //
+    // registerError: (state, action: PayloadAction<string>) => {
+    //   state.regError = action.payload
+    //   state.isReg = false
+    // },
 
     uploadAvatar: (state, action: PayloadAction<string>) => {
-      // console.log('Reducer uploadAvatar вызван!');
-      // console.log('action.payload:', action.payload);
-      // state.user!.image = action.payload
-
-      // state.user = { ...state.user, user: { ...state.user.user, image: action.payload } };
       state.user!.image = action.payload
-
       state.isReg = true
       state.regError = ''
     },

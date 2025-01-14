@@ -1,8 +1,7 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState } from 'react'
 import EnterForm from '../../shared/forms/EnterForm'
-import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
-import { loginThunk, useLoginLoading } from './login-thunk.ts'
-import { authSlice } from './auth.slice.ts'
+import { useAppDispath } from '../../shared/redux.ts'
+import { loginThunk } from './login-thunk.ts'
 import { useNavigate } from 'react-router'
 
 
@@ -47,8 +46,6 @@ const Login = () => {
       {/*  <span style={{margin: '5px'}}>{` The Error: ${loginError}`} - {`small: ${error}`}</span>*/}
       {/*</div>*/}
     </>
-
-
   )
 }
 
