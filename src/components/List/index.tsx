@@ -3,13 +3,17 @@ import useStore from '../QuestionForm/store'
 import { createAvatar } from '@dicebear/core';
 import { openPeeps } from '@dicebear/collection';
 import { useAppSelector } from '../../shared/redux.ts'
-import { authSlice } from '../Login/auth.slice.ts'
+import { authSlice, AuthState } from '../Login/auth.slice.ts'
 
 const List = () => {
   const {todos} = useStore()
-  const userData = useAppSelector(authSlice.selectors.user)
-  // @ts-ignore
-  const useName = userData?.user?.name
+  // const userData = useAppSelector(authSlice.selectors.user)
+  const userData = useAppSelector(authSlice.selectors.user) as AuthState
+  const user = userData ? userData.user : null;
+  const useName = user?.name
+  const userAvatar = user?.image
+  const userId = user?.id
+  const userIdShort = userId?.slice(0,13)
 
   let seed = Math.random().toString(36).slice(2, 11)
   const avatar = createAvatar(openPeeps, { seed,
@@ -26,8 +30,8 @@ const List = () => {
         {todos.slice().reverse().map((todo, _) => (
 
           <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}>
-            <span className={styles.coFunderLabel}>Some NEw</span>
-            <div className={styles.thumb}><img src={avatar} />
+            <span className={styles.coFunderLabel}>{userIdShort}</span>
+            <div className={styles.thumb}><img src={userAvatar} alt={avatar}/>
 
             </div>
             <div className={styles.description}>
