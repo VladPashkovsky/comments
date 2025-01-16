@@ -1,42 +1,57 @@
 import styles from './style.module.css'
 import useStore from '../QuestionForm/store'
-import { createAvatar } from '@dicebear/core';
-import { openPeeps } from '@dicebear/collection';
+import { createAvatar } from '@dicebear/core'
+import { initials } from '@dicebear/collection'
 import { useAppSelector } from '../../shared/redux.ts'
 import { authSlice, AuthState } from '../Login/auth.slice.ts'
+import { useEffect, useState } from 'react'
 
 const List = () => {
-  const {todos} = useStore()
-  // const userData = useAppSelector(authSlice.selectors.user)
+  const { todos } = useStore()
   const userData = useAppSelector(authSlice.selectors.user) as AuthState
-  const user = userData ? userData.user : null;
-  const useName = user?.name
+  const updatedUserAvatar = useAppSelector(authSlice.selectors.userImage)
+  const user = userData ? userData.user : null
+  const userName = user?.name
   const userAvatar = user?.image
   const userId = user?.id
-  const userIdShort = userId?.slice(0,13)
+  const userIdShort = userId?.slice(0, 13)
 
-  let seed = Math.random().toString(36).slice(2, 11)
-  const avatar = createAvatar(openPeeps, { seed,
-    size: 128, skinColor: ['ffdbb4', 'edb98a', 'd08b5b'],
+  const [stateAvatar, setStateAvatar] = useState<string | undefined>()
+
+  const avatar = createAvatar(initials, {
+    seed: userName,
+    size: 128,
+    scale: 120,
+    backgroundColor: ['#46a0b5', '#3d747e', '#4b758a'],
+    flip: false,
+    rotate: 0,
   }).toDataUri()
+
+
+  useEffect(() => {
+    setStateAvatar(userAvatar)
+    if (!userAvatar) {
+      setStateAvatar(avatar)
+    }
+    if (updatedUserAvatar) {
+      setStateAvatar(updatedUserAvatar)
+    }
+  }, [userAvatar, updatedUserAvatar])
 
 
   return (
     <div className={styles.content}>
-
       <ul className={styles.team}>
-
-
         {todos.slice().reverse().map((todo, _) => (
 
           <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}>
             <span className={styles.coFunderLabel}>{userIdShort}</span>
-            <div className={styles.thumb}><img src={userAvatar} alt={avatar}/>
+            <div className={styles.thumb}><img src={stateAvatar} />
 
             </div>
             <div className={styles.description}>
               {/*<h3>Chris Coyier</h3>*/}
-              <h3>{useName}</h3>
+              <h3>{userName}</h3>
               <p>
                 {todo.text.length > 160 ? `${todo.text.substring(0, 160)}.....` : todo.text}
                 <br /><a>Delete</a>

@@ -20,10 +20,7 @@ const AvatarUser = () => {
   const userImage = useAppSelector(authSlice.selectors.userImage)
   const userId = user?.id
   const userAvatar = user?.image
-  // const [image, setImage] = useState(userAvatar)
-  // console.log(`userImage: ${userImage}`);
-  // console.log(`userAvatar: ${userAvatar}`);
-  // console.log(`image: ${image}`);
+
 
   const notificationProp = useSpring({
     from: { opacity: 0 },
