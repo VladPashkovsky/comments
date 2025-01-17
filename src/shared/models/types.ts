@@ -9,12 +9,12 @@ export interface User {
 }
 
 export interface Comment {
-  id: string,
+  id?: string,
   text: string,
-  userId: string,
-  userName: string,
-  createdAt: string,
-  user: User,
+  userId?: string,
+  userName?: string,
+  createdAt?: string,
+  user?: User,
 }
 
 export interface Token {
@@ -28,6 +28,17 @@ export type ErrorWithMessage = {
   data: {
     message: string
   }
+}
+
+export type PaginatedResult<T> = {
+  data: T[];
+  first: number;
+  items: number;
+  last: number;
+  next: number | null;
+  pages: number;
+  prev: number | null;
+  // [Symbol.iterator](): Iterator<T>;
 }
 
 

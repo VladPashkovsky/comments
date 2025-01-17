@@ -1,32 +1,33 @@
 import styles from './style.module.css'
 import { useState } from 'react'
 import useStore from './store.ts'
-import { Todo } from './store.ts'
-import {authSlice} from '../Login/auth.slice.ts'
+import { authSlice, AuthState } from '../Login/auth.slice.ts'
 import { useAppSelector } from '../../shared/redux.ts'
-import { AuthResponse, User } from '../../shared/models/types.ts'
+import { useCreateComment } from './use-create-comment.ts'
 
+const TEXT_REQUEST = import.meta.env.VITE_FAKER_API_TEXT
 
-const QuestionForm = () => {
+const CommentForm = () => {
+
   const [newTodo, setNewTodo] = useState('')
   const { addTodo } = useStore()
 
-  const userData  = useAppSelector(authSlice.selectors.user)
-  // @ts-ignore
+  const userData = useAppSelector(authSlice.selectors.user) as AuthState
   const userName = userData?.user?.name
+
+  const createComment = useCreateComment()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const newTodoItem: Todo = {
-      id: Date.now(),
+    const newTodoItem = {
       text: newTodo,
     }
 
     if (newTodo === '') {
       return
     }
-    addTodo(newTodoItem)
 
+    createComment.handleCreate(newTodoItem.text)
     setNewTodo('')
   }
 
@@ -35,16 +36,16 @@ const QuestionForm = () => {
     event.preventDefault()
     let charactersNumber = Math.floor(Math.random() * (800 - 300 + 1))
     try {
-      const response = await fetch(`https://fakerapi.it/api/v2/texts?_quantity=1&_characters=${charactersNumber}`)
+      const response = await fetch(`${TEXT_REQUEST}${charactersNumber}`)
 
       const data = await response.json()
       const answer = data.data[0].content
 
-      const newTodoItem: Todo = {
-        id: Date.now(),
+      const newTodoItem = {
         text: answer,
       }
-      addTodo(newTodoItem)
+
+      createComment.handleCreate(newTodoItem.text)
       setNewTodo('')
     } catch (error) {
       console.error(error)
@@ -76,4 +77,4 @@ const QuestionForm = () => {
   )
 }
 
-export default QuestionForm
+export default CommentForm

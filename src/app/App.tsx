@@ -2,7 +2,7 @@ import styles from './App.module.css'
 import Login from '../components/Login'
 import Registration from '../components/Registration'
 import Background from '../components/Background'
-import QuestionForm from '../components/QuestionForm'
+import CommentForm from '../components/CommentForm'
 import ParallaxEnter from '../components/ParallaxEnter'
 import Tasks from '../components/Tasks'
 import Stars from '../components/Stars'
@@ -53,7 +53,7 @@ function App() {
           <Tasks />
         </div>
         <div className={styles.form_question}>
-          <QuestionForm />
+          <CommentForm />
         </div>
         <Stars />
 

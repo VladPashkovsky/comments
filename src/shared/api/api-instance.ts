@@ -17,10 +17,20 @@ export const jsonApiInstance = async <T>(
   let headers = init?.headers ?? {}
 
   if (init?.json) {
-    headers = {
-      'Content-Type': 'application/json',
-      ...headers,
+
+    const token = localStorage.getItem('token')
+    if (token) {
+      headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        ...headers,
+      }
     }
+
+    // headers = {
+    //   'Content-Type': 'application/json',
+    //   ...headers,
+    // }
     init.body = JSON.stringify(init.json)
   }
 
@@ -31,6 +41,11 @@ export const jsonApiInstance = async <T>(
   if (!result.ok) {
     throw new ApiError(result)
   }
-  const data = (await result.json()) as Promise<T>
+  // const data = (await result.json()) as Promise<T>
+  const data = await result.json() as T
+  if (typeof data === 'object' && data !== null && 'accessToken' in data) {
+    localStorage.setItem('token', (data as { accessToken: string }).accessToken)
+  }
   return data
+
 }

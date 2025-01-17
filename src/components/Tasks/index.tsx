@@ -1,5 +1,5 @@
 import styles from './style.module.css'
-import useStore from '../QuestionForm/store.ts'
+import useStore from '../CommentForm/store.ts'
 
 
 const Tasks = () => {

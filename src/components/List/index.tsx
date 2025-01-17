@@ -1,5 +1,5 @@
 import styles from './style.module.css'
-import useStore from '../QuestionForm/store'
+import useStore from '../CommentForm/store'
 import { createAvatar } from '@dicebear/core'
 import { initials } from '@dicebear/collection'
 import { useAppSelector } from '../../shared/redux.ts'
