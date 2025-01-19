@@ -1,6 +1,5 @@
-import { infiniteQueryOptions, keepPreviousData, queryOptions } from '@tanstack/react-query'
-import $api from '../../shared/api/api-intercept.ts'
-import {PaginatedResult, Comment} from '../../shared/models/types.ts'
+import { infiniteQueryOptions } from '@tanstack/react-query'
+import { Comment, PaginatedResult } from '../../shared/models/types.ts'
 import { jsonApiInstance } from '../../shared/api/api-instance.ts'
 
 export const commentApi = {
@@ -15,8 +14,9 @@ export const commentApi = {
           { signal: meta.signal }),
       initialPageParam: 1,
       getNextPageParam: (result) => result.next,
-      getPreviousPageParam: (result) => result.prev,
-      select: result => result.pages.flatMap(page => page.data),
+      // getPreviousPageParam: (result) => result.prev,
+      // select: result => result.pages.flatMap(page => page.data),
+      select: result => result.pages.flat(),
     })
   },
 
@@ -32,5 +32,4 @@ export const commentApi = {
       method: 'DELETE',
     })
   },
-
 }

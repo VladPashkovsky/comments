@@ -51,7 +51,7 @@ const List = () => {
   }
 
   console.log(`commentItemsInfinite: ${JSON.stringify(commentItemsInfinite)}`)
-
+ 
   return (
     <div className={styles.content}>
       <ul className={styles.team}>

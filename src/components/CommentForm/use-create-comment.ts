@@ -1,8 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { commentApi } from './commentAPI.ts'
-import { customAlphabet, nanoid } from 'nanoid'
+import { nanoid } from 'nanoid'
 import { queryClient } from '../../shared/api/query-client.ts'
-import { Comment } from '../../shared/models/types.ts'
 
 export function useCreateComment() {
   const createTodoMutation = useMutation({

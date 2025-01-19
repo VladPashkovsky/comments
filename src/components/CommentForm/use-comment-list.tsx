@@ -1,8 +1,10 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
-import {commentApi} from './commentAPI.ts'
+import { useInfiniteQuery, UseInfiniteQueryResult } from '@tanstack/react-query'
+import { commentApi } from './commentAPI.ts'
 import { useCallback, useRef } from 'react'
+import { Comment, PaginatedResult } from '../../shared/models/types.ts'
 
 export function useCommentList() {
+
   const {
     data: commentItemsInfinite,
     error: errorInfinite,
@@ -16,12 +18,13 @@ export function useCommentList() {
     ...commentApi.getTodoListInfinityOptions(),
   })
 
+
   const cursorRef = useIntersection(() => {
     fetchNextPage()
   })
 
   const cursor = (
-    <div className="flex gap-2 mt-4" ref={cursorRef}>
+    <div style={{ display: 'flex', gap: '4px', marginTop: '8px' }} ref={cursorRef}>
       {!hasNextPage && <div>No more data</div>}
       {isFetchingNextPage && <div>Loading...</div>}
     </div>
@@ -30,8 +33,9 @@ export function useCommentList() {
   return { errorInfinite, commentItemsInfinite, isLoadingInfinite, cursor, refetchInfinite }
 }
 
-export function useIntersection(onIntersept: () => void) {
-  const unsubscribe = useRef(() => {})
+function useIntersection(onIntersept: () => void) {
+  const unsubscribe = useRef(() => {
+  })
   return useCallback((el: HTMLDivElement | null) => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(intersection => {

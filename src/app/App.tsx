@@ -61,11 +61,14 @@ function App() {
           {/*<button onClick={handleButtonClick}>L I S T</button>*/}
           <EnergyButton onClick={handleButtonClick} />
         </div>
-        <div className={`${styles.list_background} ${shifted ? styles.shifted : styles.unshifted}`}>
-          <div className={`${styles.form_list} ${shifted ? styles.shifted : styles.unshifted}`}>
-            <List />
+        {
+          isActivated &&
+          <div className={`${styles.list_background} ${shifted ? styles.shifted : styles.unshifted}`}>
+            <div className={`${styles.form_list} ${shifted ? styles.shifted : styles.unshifted}`}>
+              <List />
+            </div>
           </div>
-        </div>
+        }
       </div>
     </>
   )
