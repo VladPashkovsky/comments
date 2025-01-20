@@ -2,58 +2,30 @@ import { useMutation } from '@tanstack/react-query'
 import { commentApi } from './commentAPI.ts'
 import { nanoid } from 'nanoid'
 import { queryClient } from '../../shared/api/query-client.ts'
+import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
+import {tasksSlice} from '../Tasks/tasks.slice.ts'
 
 export function useCreateComment() {
+  const dispatch = useAppDispath()
   const createTodoMutation = useMutation({
     mutationFn: commentApi.createComment,
+    onSuccess: (data) => {
+      dispatch(tasksSlice.actions.addTasks(data))
+    },
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: [commentApi.baseKey] })
     },
   })
 
   const handleCreate = (text: string) => {
-    // console.log('Отправляемые данные:', { id: nanoid(10), text: text })
     createTodoMutation.mutate({
         id: nanoid(10),
         text: text.trim(),
-      },
-      {
-        onSuccess() {
-          // queryClient.invalidateQueries(todoListApi.getTodoListInfinityOptions())
-          //   queryClient.invalidateQueries({
-          //   queryKey: [todoListApi.baseKey],
-          // })
-        },
       })
-    // e.currentTarget.reset()
   }
-
-  // const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault()
-  //   const formData = new FormData(e.currentTarget)
-  //   const text = formData.get('text') as string ?? ''
-  //
-  //   // const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-  //   // const nanoid = customAlphabet(alphabet, 10)
-  //   console.log('Отправляемые данные:', { id: nanoid(10), text: text })
-  //
-  //   createTodoMutation.mutate({
-  //       id: nanoid(10),
-  //       text: text,
-  //     },
-  //     {
-  //       onSuccess() {
-  //         // queryClient.invalidateQueries(todoListApi.getTodoListInfinityOptions())
-  //         //   queryClient.invalidateQueries({
-  //         //   queryKey: [todoListApi.baseKey],
-  //         // })
-  //       },
-  //     })
-  //   e.currentTarget.reset()
-  // }
 
   return {
     handleCreate,
-    isPending: createTodoMutation.isPending,
+    isPending: createTodoMutation.isPending, data: createTodoMutation.data
   }
 }
