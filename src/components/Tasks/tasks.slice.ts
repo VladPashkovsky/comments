@@ -32,5 +32,10 @@ export const tasksSlice = createSlice({
       state.tasksError = action.payload
       state.isTasks = false
     },
+    removeTasks: (state) => {
+      state.tasks = []
+      state.isTasks = false
+      state.tasksError = ''
+    },
   },
 }).injectInto(rootReducer)

@@ -2,6 +2,8 @@ import { useMemo } from 'react'
 import { logoutThunk } from '../Login/logout-thunk.ts'
 import { useAppDispath } from '../../shared/redux.ts'
 import { animateUp } from '../../shared/UpDown.ts'
+import {useAppSelector} from '../../shared/redux.ts'
+import {tasksSlice} from '../Tasks/tasks.slice.ts'
 
 import styles from './style.module.css'
 
@@ -43,6 +45,7 @@ const Background = () => {
     event.preventDefault()
     dispatch(logoutThunk())
     animateUp()
+    dispatch(tasksSlice.actions.removeTasks())
   }
 
   return (
