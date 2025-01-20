@@ -1,4 +1,4 @@
-import { infiniteQueryOptions } from '@tanstack/react-query'
+import { infiniteQueryOptions, UseInfiniteQueryResult } from '@tanstack/react-query'
 import { Comment, PaginatedResult } from '../../shared/models/types.ts'
 import { jsonApiInstance } from '../../shared/api/api-instance.ts'
 
@@ -10,7 +10,7 @@ export const commentApi = {
       queryKey: [commentApi.baseKey, 'list'],
       // queryFn: (meta) => todoListApi.getTodoList({ page: meta.pageParam }, meta),
       queryFn: (meta) =>
-        jsonApiInstance<PaginatedResult<Comment>>(`/comments?_page=${meta.pageParam}&_per_page=5`,
+        jsonApiInstance<any>(`/comments?_page=${meta.pageParam}&_per_page=5`,
           { signal: meta.signal }),
       initialPageParam: 1,
       getNextPageParam: (result) => result.next,

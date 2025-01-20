@@ -5,9 +5,8 @@ import { initials } from '@dicebear/collection'
 import { useAppSelector } from '../../shared/redux.ts'
 import { authSlice, AuthState } from '../Login/auth.slice.ts'
 import { useEffect, useState } from 'react'
-import {useCommentList} from '../CommentForm/use-comment-list.tsx'
-import React from 'react'
-import {Comment, PaginatedResult} from '../../shared/models/types.ts'
+import { useCommentList } from '../CommentForm/use-comment-list.tsx'
+import { useDeleteComment } from '../CommentForm/use-delete-comment.ts'
 
 const List = () => {
   const { todos } = useStore()
@@ -17,7 +16,8 @@ const List = () => {
   const userName = user?.name
   const userAvatar = user?.image
 
-  const { commentItemsInfinite, isLoadingInfinite , refetchInfinite, errorInfinite, cursor } = useCommentList()
+  const { commentItemsInfinite, isLoadingInfinite, refetchInfinite, errorInfinite, cursor } = useCommentList()
+  const deleteComment = useDeleteComment()
 
   const [stateAvatar, setStateAvatar] = useState<string | undefined>()
 
@@ -50,12 +50,12 @@ const List = () => {
     return <div>error: {JSON.stringify(errorInfinite)}</div>
   }
 
-  console.log(`commentItemsInfinite: ${JSON.stringify(commentItemsInfinite)}`)
+  // console.log(`commentItemsInfinite: ${JSON.stringify(commentItemsInfinite)}`)
 
   return (
     <div className={styles.content}>
       <ul className={styles.team}>
-        {commentItemsInfinite?.slice().reverse().map((todo) => (
+        {commentItemsInfinite?.slice().reverse().map((todo: any) => (
 
           <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}>
             <span className={styles.coFunderLabel}>{todo.createdAt.slice(0, 10)}</span>
@@ -66,7 +66,12 @@ const List = () => {
               <h3>{userName}</h3>
               <p>
                 {todo.text.length > 160 ? `${todo.text.substring(0, 160)}.....` : todo.text}
-                <br /><a>Delete</a>
+                <br />
+                <button onClick={() => deleteComment.handleDelete(todo.id)}
+                        disabled={deleteComment.isPending(todo.id)}
+                >
+                  Delete
+                </button>
               </p>
             </div>
           </li>

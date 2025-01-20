@@ -141,7 +141,7 @@ h2 {
     max-width: 100%;
 }
 
-.description a {
+.description button {
     cursor: pointer;
 }
 
@@ -208,7 +208,7 @@ h3 {
     transform: rotate(-3deg);
 }
 
-.description p a {
+.description p button {
     display: inline-block;
     margin: 0.5em 0 0 0;
     background: var(--dark);
@@ -218,14 +218,14 @@ h3 {
     text-decoration: none;
     transition: var(--trans);
 }
-.description p a:hover {
+.description p button:hover {
     transition: var(--trans);
     color: var(--dark);
     background: var(--yellow);
     font-weight: bold;
 }
 
-.description p a img {
+.description p button img {
     float: left;
     width: 22px;
     filter: invert(1);
