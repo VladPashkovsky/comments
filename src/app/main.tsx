@@ -7,7 +7,6 @@ import { queryClient } from '../shared/api/query-client.ts'
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 import { onlineManager } from '@tanstack/react-query'
-import { prefetchAuth } from '../components/Login/prefetch.ts'
 import { Loader } from '../components/Loader'
 import App from './App.tsx'
 import './index.css'
@@ -17,8 +16,6 @@ import './index.css'
 const persister = createSyncStoragePersister({
   storage: window.localStorage
 })
-
-// prefetchAuth()
 
 createRoot(document.getElementById('root')!).render(
   <PersistQueryClientProvider

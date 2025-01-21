@@ -1,5 +1,4 @@
 import styles from './style.module.css'
-import useStore from '../CommentForm/store'
 import { createAvatar } from '@dicebear/core'
 import { initials } from '@dicebear/collection'
 import { useAppSelector } from '../../shared/redux.ts'
@@ -7,10 +6,8 @@ import { authSlice, AuthState } from '../Login/auth.slice.ts'
 import { useEffect, useState } from 'react'
 import { useCommentList } from '../CommentForm/use-comment-list.tsx'
 import { useDeleteComment } from '../CommentForm/use-delete-comment.ts'
-import {Comment} from '../../shared/models/types.ts'
 
 const List = () => {
-  const { todos } = useStore()
   const userData = useAppSelector(authSlice.selectors.user) as AuthState
   const updatedUserAvatar = useAppSelector(authSlice.selectors.userImage)
   const user = userData ? userData.user : null
@@ -22,6 +19,7 @@ const List = () => {
   const deleteComment = useDeleteComment()
 
   const [stateAvatar, setStateAvatar] = useState<string | undefined>()
+  const [deletingIds, setDeletingIds] = useState<string[]>([]);
 
   const avatar = createAvatar(initials, {
     seed: userName,
@@ -52,8 +50,16 @@ const List = () => {
     return <div>error: {JSON.stringify(errorInfinite)}</div>
   }
 
-  // console.log(`commentItemsInfinite: ${JSON.stringify(commentItemsInfinite)}`)
-  // console.log(`uerId: ${userId}`)
+  const handleDelete = async (id: string) => {
+    setDeletingIds(prev => [...prev, id]);
+    try {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      await deleteComment.handleDelete(id);
+    } catch (error) {
+      // setDeletingIds(prev => prev.filter(itemId => itemId !== id));
+      console.error("Error deleting comment:", error);
+    }
+  };
 
   return (
     <div className={styles.content}>
@@ -63,7 +69,11 @@ const List = () => {
 
         {commentItemsInfinite?.pages.map((todo: any) => (
 
-          <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}>
+          // <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}>
+          <li
+            className={`${styles.member} ${styles['co-funder']} ${deletingIds.includes(todo.id) ? styles.slideOut : ''}`}
+            key={todo.id}
+          >
             <span className={styles.coFunderLabel}>{todo.createdAt.slice(0, 10)}</span>
             <div className={styles.thumb}><img src={stateAvatar} />
 
@@ -73,8 +83,8 @@ const List = () => {
               <p>
                 {todo.text.length > 160 ? `${todo.text.substring(0, 160)}.....` : todo.text}
                 <br />
-                <button onClick={() => deleteComment.handleDelete(todo.id)}
-                        disabled={deleteComment.isPending(todo.id)}
+                <button onClick={() => handleDelete(todo.id)}
+                        disabled={deleteComment.isPending(todo.id) || deletingIds.includes(todo.id)}
                 >
                   Delete
                 </button>
@@ -86,7 +96,6 @@ const List = () => {
       </ul>
     </div>
   )
-
 }
 
 export default List

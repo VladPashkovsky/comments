@@ -43,6 +43,40 @@ h2 {
     margin: 0;
 }
 
+
+.list_background {
+    position: absolute;
+    width: 25vw;
+    height: 76vh;
+    /*border: 1px solid red;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 63vw;
+    overflow-x: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.list_background.shifted {
+    transform: translateX(12.7vw);
+    /*z-index: -1;*/
+}
+
+.list_background.unshifted {
+    transform: translateX(0);
+}
+
+.slideOut {
+    animation: slideOutRight 0.5s forwards;
+}
+
+@keyframes slideOutRight {
+    to {
+        transform: translateX(12.7vw);
+        opacity: 0;
+    }
+}
+
 .member {
     margin: 1.5em 0 0.5em;
     padding: 0.73em;

@@ -1,13 +1,12 @@
 import styles from './style.module.css'
-import useStore from '../CommentForm/store.ts'
 import { useAppSelector } from '../../shared/redux.ts'
 import { tasksSlice } from './tasks.slice.ts'
 
 
 const Tasks = () => {
-  const { todos } = useStore()
   const tasks = useAppSelector(tasksSlice.selectors.tasks)
-  const isTasks = useAppSelector(tasksSlice.selectors.isTasks)
+
+  let taskNumber = 0
 
   return (
   <div className={styles.box}>
@@ -23,7 +22,7 @@ const Tasks = () => {
               {tasks?.map((todo, index) => (
                 <div key={todo.id} className={styles.responseItem}
                      ref={index === tasks.length - 1  ? (node) => node && node.scrollIntoView({ behavior: 'smooth' }) : null}>
-                  <p className={styles.todoText}>{todo.text}</p>
+                  <p className={styles.todoText}>{++taskNumber} - {todo.text}</p>
                 </div>
               ))}
             </div>

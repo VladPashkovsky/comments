@@ -1,7 +1,6 @@
-import { useInfiniteQuery, UseInfiniteQueryResult } from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { commentApi } from './commentAPI.ts'
 import { useCallback, useRef } from 'react'
-import { Comment, PaginatedResult } from '../../shared/models/types.ts'
 
 export function useCommentList(userId: string) {
 

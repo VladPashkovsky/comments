@@ -1,7 +1,3 @@
-import { authSlice, AuthState } from '../../components/Login/auth.slice.ts'
-import { useSelector } from 'react-redux'
-import { createSelector } from '@reduxjs/toolkit'
-
 const API_URL = import.meta.env.VITE_API_URL
 
 class ApiError extends Error {

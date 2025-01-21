@@ -1,6 +1,5 @@
 import styles from './style.module.css'
 import { useState } from 'react'
-import useStore from './store.ts'
 import { authSlice, AuthState } from '../Login/auth.slice.ts'
 import { useAppSelector } from '../../shared/redux.ts'
 import { useCreateComment } from './use-create-comment.ts'
@@ -10,7 +9,6 @@ const TEXT_REQUEST = import.meta.env.VITE_FAKER_API_TEXT
 const CommentForm = () => {
 
   const [newTodo, setNewTodo] = useState('')
-  const { addTodo } = useStore()
 
   const userData = useAppSelector(authSlice.selectors.user) as AuthState
   const userName = userData?.user?.name

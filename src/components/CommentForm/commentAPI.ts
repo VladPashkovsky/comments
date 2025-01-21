@@ -1,4 +1,4 @@
-import { infiniteQueryOptions, UseInfiniteQueryResult } from '@tanstack/react-query'
+import { infiniteQueryOptions } from '@tanstack/react-query'
 import { Comment, PaginatedResult } from '../../shared/models/types.ts'
 import { jsonApiInstance } from '../../shared/api/api-instance.ts'
 
