@@ -7,6 +7,7 @@ import { authSlice, AuthState } from '../Login/auth.slice.ts'
 import { useEffect, useState } from 'react'
 import { useCommentList } from '../CommentForm/use-comment-list.tsx'
 import { useDeleteComment } from '../CommentForm/use-delete-comment.ts'
+import {Comment} from '../../shared/models/types.ts'
 
 const List = () => {
   const { todos } = useStore()
@@ -15,8 +16,9 @@ const List = () => {
   const user = userData ? userData.user : null
   const userName = user?.name
   const userAvatar = user?.image
+  const userId = user?.id
 
-  const { commentItemsInfinite, isLoadingInfinite, refetchInfinite, errorInfinite, cursor } = useCommentList()
+  const { commentItemsInfinite, isLoadingInfinite, refetchInfinite, errorInfinite, cursor } = useCommentList(userId || '')
   const deleteComment = useDeleteComment()
 
   const [stateAvatar, setStateAvatar] = useState<string | undefined>()
@@ -51,11 +53,15 @@ const List = () => {
   }
 
   // console.log(`commentItemsInfinite: ${JSON.stringify(commentItemsInfinite)}`)
+  // console.log(`uerId: ${userId}`)
 
   return (
     <div className={styles.content}>
       <ul className={styles.team}>
-        {commentItemsInfinite?.slice().reverse().map((todo: any) => (
+        {/*{commentItemsInfinite?.slice().reverse().map((todo: any) => (*/}
+
+
+        {commentItemsInfinite?.pages.map((todo: any) => (
 
           <li className={`${styles.member} ${styles['co-funder']}`} key={todo.id}>
             <span className={styles.coFunderLabel}>{todo.createdAt.slice(0, 10)}</span>

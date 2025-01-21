@@ -17,6 +17,10 @@ export const commentApi = {
       getPreviousPageParam: (result) => result.prev,
       // select: result => result.pages.flatMap(page => page.data),
       // select: result => result.pages.flat(),
+      // select: (result) => ({
+      //   pages: result.pages.map(page => page.data),
+      //   pageParams: result.pageParams,
+      // }),
       select: (result) => ({
         pages: result.pages.flatMap(page => page.data),
         pageParams: result.pageParams,

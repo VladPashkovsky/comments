@@ -3,7 +3,7 @@ import { commentApi } from './commentAPI.ts'
 import { useCallback, useRef } from 'react'
 import { Comment, PaginatedResult } from '../../shared/models/types.ts'
 
-export function useCommentList() {
+export function useCommentList(userId: string) {
 
   const {
     data: commentItemsInfinite,
@@ -15,7 +15,7 @@ export function useCommentList() {
     isFetchingNextPage,
     refetch: refetchInfinite,
   } = useInfiniteQuery({
-    ...commentApi.getTodoListInfinityOptions(),
+    ...commentApi.getTodoListInfinityOptions(userId),
   })
 
 
@@ -25,7 +25,7 @@ export function useCommentList() {
 
   const cursor = (
     <div style={{ display: 'flex', gap: '4px', marginTop: '8px' }} ref={cursorRef}>
-      {!hasNextPage && <div>No more data</div>}
+      {!hasNextPage && <div>No data</div>}
       {isFetchingNextPage && <div>Loading...</div>}
     </div>
   )

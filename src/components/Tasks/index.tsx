@@ -9,8 +9,6 @@ const Tasks = () => {
   const tasks = useAppSelector(tasksSlice.selectors.tasks)
   const isTasks = useAppSelector(tasksSlice.selectors.isTasks)
 
-  console.log(`tasks:`, tasks)
-  console.log(`isTasks:`, isTasks)
   return (
   <div className={styles.box}>
     <div className={styles.user}>

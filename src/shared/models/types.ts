@@ -32,6 +32,12 @@ export type ErrorWithMessage = {
 
 export type PaginatedResult<T> = {
   data: T[];
+  meta: {
+    totalCount: number;
+    pageCount: number;
+    currentPage: number;
+    perPage: number;
+  };
   first: number;
   items: number;
   last: number;
