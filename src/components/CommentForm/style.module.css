@@ -154,8 +154,6 @@ body {
 
 .inptBtn {
     display: flex;
-    /*justify-content: space-between;*/
-    /*align-items: center;*/
     width: 100%;
     gap: 7px;
 }
@@ -175,7 +173,7 @@ body {
 }
 
 .textarea {
-    width: 100%;
+    width: 80%;
     height: 53vh;
     margin-top: 48vh;
     /*padding: 110px 20px;*/
@@ -210,13 +208,21 @@ body {
     background: rgba(0, 0, 0, 0.1);
     border: 2px solid #ffffff;
     border-radius: 10px;
-    height: auto; /* высота автоматически подстраивается под содержимое */
-    overflow: hidden; /* скрываем содержимое, которое выходит за пределы */
-    transition: height 0.3s ease-in-out; /* плавное изменение высоты */
-    resize: vertical; /* разрешаем изменение высоты */
-    max-height: 200px; /* максимальная высота */
+    height: auto;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    resize: vertical;
+    max-height: 200px;
 }
 
+.buttonsBox {
+    position: relative;
+    display: inline;
+    width: 20%;
+    height: 53vh;
+    margin-top: 48vh;
+    margin-left: 10px;
+}
 
 /*.loginBx input[type="submit"] {*/
 /*    background: #45f3ff;*/
@@ -228,14 +234,9 @@ body {
 
 
 .loginBx button {
-    position: relative;
+    width: 100%;
     height: 15vh;
-    margin-top: 48vh;
-    margin-left: 9px;
-
-    width: 18%;
     color: #111;
-    padding: 10px 20px;
     outline: none;
     border: none;
     font-size: 1em;
@@ -245,24 +246,19 @@ body {
     transition: 0.5s;
 }
 
-.loginBx button:nth-child(3) {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #ff2770;
-    width: 18%;
+.loginBx button:nth-child(2) {
+    width: 100%;
     height: 8vh;
-    left: 15.7vw;
-    top: 25vh;
+    background: #ff2770;
+    margin-top: 4vh;
 }
-
-
 
 .loginBx button:hover {
     box-shadow: 0 0 10px #45f3ff, 0 0 60px #45f3ff;
 }
 
-.loginBx button:nth-child(3):hover {
+.loginBx button:nth-child(2):hover {
     box-shadow: 0 0 10px #ff2770, 0 0 60px #ff2770;
 }
+
+

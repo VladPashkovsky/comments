@@ -53,7 +53,7 @@ const CommentForm = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewTodo(event.target.value)
   }
-
+  0
   return (
     <div className={styles.box}>
       <div className={styles.user}>
@@ -66,8 +66,10 @@ const CommentForm = () => {
           <div className={styles.inptBtn}>
             <textarea value={newTodo} onChange={handleInputChange}
                       className={styles.textarea} placeholder="Text..." />
-            <button>ADD</button>
-            <button onClick={handleText}>Auto</button>
+            <div className={styles.buttonsBox}>
+              <button disabled={createComment.isPending}>ADD</button>
+              <button onClick={handleText} disabled={createComment.isPending}>Auto</button>
+            </div>
           </div>
         </form>
       </div>

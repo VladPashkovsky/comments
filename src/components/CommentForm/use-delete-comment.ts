@@ -11,7 +11,7 @@ export function useDeleteComment() {
     },
     async onSuccess(_, deletedId) {
       const comments = queryClient.getQueryData(
-        commentApi.getTodoListInfinityOptions().queryKey,
+        commentApi.getTodoListInfinityOptions(deletedId).queryKey,
       )
       if (comments) {
         // queryClient.setQueryData(
@@ -23,7 +23,7 @@ export function useDeleteComment() {
         //   page.data.filter((todo: TasksDTO) => todo.id !== deletedId))
 
         queryClient.setQueryData(
-          commentApi.getTodoListInfinityOptions().queryKey,
+          commentApi.getTodoListInfinityOptions(deletedId).queryKey,
           // { ...todos, pages: todos.pages.map(page => ({ ...page, data: filteredTodos })) }
           {
             ...comments, pages: comments.pages.map(page =>
