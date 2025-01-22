@@ -34,6 +34,15 @@ export const commentApi = {
   deleteComment: (id: string) => {
     return jsonApiInstance(`/comments/remove/${id}`, {
       method: 'DELETE',
-    })
+    }).then(() => {
+      return true;
+    });
   },
+
+  //Previous working version:
+  // deleteComment: (id: string) => {
+  //   return jsonApiInstance(`/comments/remove/${id}`, {
+  //     method: 'DELETE',
+  //   })
+  // },
 }

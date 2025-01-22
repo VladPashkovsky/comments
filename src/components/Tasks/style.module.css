@@ -211,6 +211,11 @@ body {
     border-radius: 10px;
     font-size: 1em;
     color: white;
+    transition: 0.5s;
+}
+
+.responseItem:hover {
+    background: #373636;
 }
 
 .todoText {

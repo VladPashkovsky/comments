@@ -55,20 +55,20 @@ const List = () => {
   const handleDelete = async (id: string) => {
     setDeletingIds(prev => [...prev, id]);
     try {
-      // Запуск анимации
+      // Запускаем анимацию
       await new Promise(resolve => setTimeout(resolve, 800));
 
-      // Сокрытие комментария визуально
+      // Скрываем комментарий визуально
       setHiddenIds(prev => [...prev, id]);
 
-      // Удаление ID из списка анимируемых
+      // Удаляем ID из списка анимируемых
       setDeletingIds(prev => prev.filter(itemId => itemId !== id));
 
-      // Фактическое удаление
+      // Выполняем фактическое удаление
       await deleteComment.handleDelete(id);
     } catch (error) {
       console.error("Error deleting comment:", error);
-      // В случае ошибки, comment возвращается
+      // В случае ошибки, возвращаем комментарий
       setHiddenIds(prev => prev.filter(itemId => itemId !== id));
     } finally {
       setDeletingIds(prev => prev.filter(itemId => itemId !== id));

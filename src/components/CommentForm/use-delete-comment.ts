@@ -4,42 +4,63 @@ import { queryClient } from '../../shared/api/query-client.ts'
 import { Comment } from '../../shared/models/types.ts'
 
 export function useDeleteComment() {
+
+  //Optimistic update:
   const deleteTodoMutation = useMutation({
     mutationFn: commentApi.deleteComment,
-    async onSettled() {
-      await queryClient.invalidateQueries({ queryKey: [commentApi.baseKey] })
+    onMutate: async (deletedId: string) => {
+      await queryClient.cancelQueries({ queryKey: [commentApi.baseKey] })
+      const previousComments = queryClient.getQueryData([commentApi.baseKey, 'list'])
+      queryClient.setQueryData([commentApi.baseKey, 'list'], (old: any) => {
+        if (!old) return old;
+        return {
+          ...old,
+          pages: old.pages.map((page: any) => ({
+            ...page,
+            data: page.data.filter((comment: Comment) => comment.id !== deletedId)
+          }))
+        }
+      })
+
+      return { previousComments }
     },
-    async onSuccess(_, deletedId) {
-      const comments = queryClient.getQueryData(
-        commentApi.getTodoListInfinityOptions(deletedId).queryKey,
-      )
-      if (comments) {
-        // queryClient.setQueryData(
-        //   todoListApi.getTodoListInfinityOptions().queryKey,
-        //   todos.filter((todo: TasksDTO) => todo.id !== deletedId)
-        // )
-
-        // const filteredTodos = todos.pages.flatMap(page =>
-        //   page.data.filter((todo: TasksDTO) => todo.id !== deletedId))
-
-        queryClient.setQueryData(
-          commentApi.getTodoListInfinityOptions(deletedId).queryKey,
-          // { ...todos, pages: todos.pages.map(page => ({ ...page, data: filteredTodos })) }
-          {
-            ...comments, pages: comments.pages.map(page =>
-              ({ ...page, data: page.data.filter((todo: Comment) => todo.id !== deletedId) })),
-          },
-        )
-      }
+    onError: (_, __, context) => {
+      queryClient.setQueryData([commentApi.baseKey, 'list'], context?.previousComments)
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: [commentApi.baseKey] })
     },
   })
 
-  // const handleDelete = (id: string) => {
-  //   deleteTodoMutation.mutate(id)
-  // }
+
+//Previous working version:
+//   const deleteTodoMutation = useMutation({
+//     mutationFn: commentApi.deleteComment,
+//     async onSettled() {
+//       await queryClient.invalidateQueries({ queryKey: [commentApi.baseKey] })
+//     },
+//     async onSuccess(_, deletedId) {
+//       const comments = queryClient.getQueryData(
+//         commentApi.getTodoListInfinityOptions(deletedId).queryKey,
+//       )
+//       if (comments) {
+//         queryClient.setQueryData(
+//           commentApi.getTodoListInfinityOptions(deletedId).queryKey,
+//           // { ...todos, pages: todos.pages.map(page => ({ ...page, data: filteredTodos })) }
+//           {
+//             ...comments, pages: comments.pages.map(page =>
+//               ({ ...page, data: page.data.filter((todo: Comment) => todo.id !== deletedId) })),
+//           },
+//         )
+//       }
+//     },
+//   })
 
   return {
-    handleDelete: deleteTodoMutation.mutate,
+    handleDelete: (id: string) => deleteTodoMutation.mutate(id),
     isPending: (id: string) => deleteTodoMutation.isPending && deleteTodoMutation.variables === id,
+
+    // handleDelete: deleteTodoMutation.mutate,
+    // isPending: (id: string) => deleteTodoMutation.isPending && deleteTodoMutation.variables === id,
   }
 }
