@@ -243,7 +243,7 @@ body {
     background: #45f3ff;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.5s all ease;
 }
 
 .loginBx button:nth-child(2) {
@@ -257,8 +257,18 @@ body {
     box-shadow: 0 0 10px #45f3ff, 0 0 60px #45f3ff;
 }
 
+.loginBx button:active {
+    background: #a0f7fb;
+    box-shadow: 0 0 30px #a0f7fb, 0 0 80px #a0f7fb;
+}
+
 .loginBx button:nth-child(2):hover {
     box-shadow: 0 0 10px #ff2770, 0 0 60px #ff2770;
+}
+
+.loginBx button:nth-child(2):active {
+    background: #f897b8;
+    box-shadow: 0 0 30px #f897b8, 0 0 80px #f897b8;
 }
 
 

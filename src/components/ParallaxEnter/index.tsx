@@ -1,8 +1,52 @@
-import { MouseEventHandler, useRef } from 'react'
-import {useNavigate} from 'react-router'
+import { useRef, useState } from 'react'
+import type { MenuProps } from 'antd'
+import { Dropdown, Modal, Space } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router'
 import styles from './style.module.css'
 
 const ParallaxEnter = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const showModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleOk = () => {
+    setIsModalOpen(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalOpen(false)
+  }
+
+  const Front = import.meta.env.VITE_FRONT
+  const Back = import.meta.env.VITE_BACK
+
+  const items: MenuProps['items'] = [
+    {
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href={Front}>
+          Frontend
+        </a>
+      ),
+      key: '0',
+      icon: <img src="../../../public/parallax/images/github-mark.svg" width="32" height="32" />,
+    },
+    {
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href={Back}>
+          Backend
+        </a>
+      ),
+      key: '1',
+      icon: <img src="../../../public/parallax/images/github-mark.svg" width="32" height="32" />,
+    },
+    {
+      type: 'divider',
+    },
+  ]
+
   // let text = document.getElementById("text");
   // let img1 = document.getElementById("img1");
   // let img2 = document.getElementById("img2");
@@ -48,41 +92,34 @@ const ParallaxEnter = () => {
       <header id={styles.header}>
         <a href="" className={styles.logo} onClick={headerGo}>COMMENTS</a>
         <ul>
-          {/*<li><a href="#" className={styles.active}>About</a></li>*/}
-          {/*<li><a href="#">About</a></li>*/}
-          {/*<li><a href="#">Contact</a></li>*/}
-          <li><a href="#" className={styles.link}>About</a></li>
-          <li><a href="#" className={styles.link}>Github</a></li>
+          <li><a className={styles.link} onClick={showModal}>About</a></li>
+          <li>
+            <a className={styles.link}>
+              <Dropdown menu={{ items }}>
+                <a onClick={(e) => e.preventDefault()}>
+                  <Space>
+                    GitHub
+                    <DownOutlined />
+                  </Space>
+                </a>
+              </Dropdown>
+            </a>
+          </li>
         </ul>
+        <Modal title="ABOUT:" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
       </header>
       <section id={styles.scene}>
-      <img src="/parallax/images/basic_space.jpg" alt="space" />
+        <img src="/parallax/images/basic_space.jpg" alt="space" />
         <h2 id="text" ref={textRef}>Space is near</h2>
-        {/*<img src="/parallax/images/01.png" id="img1" alt="01.png" ref={img1Ref} />*/}
         <img src="/parallax/images/02_1.png" id="img2" alt="02.png" ref={img2Ref} />
         <img src="/parallax/images/03_1.png" id="img3" alt="03.png" ref={img3Ref} />
-        {/*<img src="/parallax/images/04.png" id="img4" alt="04.png" />*/}
-        <img src="/parallax/images/telescope.png" id="img4" alt="04.png"/>
+        <img src="/parallax/images/telescope.png" id="img4" alt="04.png" />
       </section>
-      {/*<div className="sec">*/}
-      {/*  <h2>Parallax Scrolling Effect</h2>*/}
-      {/*  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis doloribus est libero mollitia natus nemo,*/}
-      {/*    nulla obcaecati officiis omnis perferendis placeat quam quidem. A ab amet aut est ex fugit illum ipsa iusto*/}
-      {/*    molestiae nihil nobis, nostrum perspiciatis quas, quibusdam sapiente sint suscipit vel velit voluptates*/}
-      {/*    voluptatum. Blanditiis consequatur facilis inventore nostrum quo. Alias consectetur consequuntur delectus*/}
-      {/*    doloremque earum eos ex maiores quos! Accusantium aperiam aut corporis cupiditate earum explicabo facilis*/}
-      {/*    optio,*/}
-      {/*    perferendis reiciendis repellat. Accusamus autem eaque, earum est illum in ipsam nemo nesciunt obcaecati*/}
-      {/*    perferendis qui quisquam ratione tempore temporibus ullam. Ad architecto cum delectus neque reiciendis*/}
-      {/*    temporibus.*/}
-      {/*    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cupiditate, debitis deleniti, deserunt*/}
-      {/*    dolorum ea earum enim eum ipsam laudantium libero maxime neque possimus recusandae rem repudiandae tempora*/}
-      {/*    voluptatum? Amet, beatae culpa dolorum explicabo impedit in libero nobis odit officia optio similique sit*/}
-      {/*    soluta*/}
-      {/*  </p>*/}
-      {/*</div>*/}
     </>
-
   )
 }
 

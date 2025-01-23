@@ -57,7 +57,7 @@ const RegisterAuth: FC<RequireAuthProps> = ({ children }) => {
   }
 
   const showNotification = () => {
-    setTimeout(addedNotification, 1500)
+    setTimeout(addedNotification, 1000)
     // setTimeout(navigateBack, 3000)
   }
 
