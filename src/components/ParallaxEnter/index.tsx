@@ -96,12 +96,12 @@ const ParallaxEnter = () => {
           <li>
             <a className={styles.link}>
               <Dropdown menu={{ items }}>
-                <a onClick={(e) => e.preventDefault()}>
+                <span onClick={(e) => e.preventDefault()}>
                   <Space>
                     GitHub
                     <DownOutlined />
                   </Space>
-                </a>
+                </span>
               </Dropdown>
             </a>
           </li>
