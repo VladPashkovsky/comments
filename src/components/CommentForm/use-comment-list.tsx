@@ -23,7 +23,7 @@ export function useCommentList(userId: string) {
   })
 
   const cursor = (
-    <div style={{ display: 'flex', gap: '4px', marginTop: '8px' }} ref={cursorRef}>
+    <div style={{ display: 'flex', gap: '4px', marginTop: '8px', marginLeft: '7.5vw' }} ref={cursorRef}>
       {!hasNextPage && <div style={{color: '#ff2770'}}>...No data</div>}
       {isFetchingNextPage && <div style={{color: '#ff2770'}}>Loading...</div>}
     </div>

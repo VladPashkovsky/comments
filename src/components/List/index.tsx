@@ -3,9 +3,10 @@ import { createAvatar } from '@dicebear/core'
 import { initials } from '@dicebear/collection'
 import { useAppSelector } from '../../shared/redux.ts'
 import { authSlice, AuthState } from '../Login/auth.slice.ts'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useCommentList } from '../CommentForm/use-comment-list.tsx'
 import { useDeleteComment } from '../CommentForm/use-delete-comment.ts'
+import UpListButton from '../UpListButton'
 
 const List = () => {
   const userData = useAppSelector(authSlice.selectors.user) as AuthState
@@ -15,13 +16,20 @@ const List = () => {
   const userAvatar = user?.image
   const userId = user?.id
 
-  const { commentItemsInfinite, isLoadingInfinite, refetchInfinite, errorInfinite, cursor } = useCommentList(userId || '')
+  const {
+    commentItemsInfinite,
+    isLoadingInfinite,
+    refetchInfinite,
+    errorInfinite,
+    cursor,
+  } = useCommentList(userId || '')
   const deleteComment = useDeleteComment()
 
   const [stateAvatar, setStateAvatar] = useState<string | undefined>()
+  const [deletingIds, setDeletingIds] = useState<string[]>([])
+  const [hiddenIds, setHiddenIds] = useState<string[]>([])
 
-  const [deletingIds, setDeletingIds] = useState<string[]>([]);
-  const [hiddenIds, setHiddenIds] = useState<string[]>([]);
+  const listRef = useRef<HTMLUListElement>(null)
 
   const avatar = createAvatar(initials, {
     seed: userName,
@@ -53,27 +61,27 @@ const List = () => {
   }
 
   const handleDelete = async (id: string) => {
-    setDeletingIds(prev => [...prev, id]);
+    setDeletingIds(prev => [...prev, id])
     try {
       // Запуск анимации
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await new Promise(resolve => setTimeout(resolve, 800))
 
       // Сокрытие комментария визуально
-      setHiddenIds(prev => [...prev, id]);
+      setHiddenIds(prev => [...prev, id])
 
       // Удаление ID из списка анимируемых
-      setDeletingIds(prev => prev.filter(itemId => itemId !== id));
+      setDeletingIds(prev => prev.filter(itemId => itemId !== id))
 
       // Фактическое удаление
-      await deleteComment.handleDelete(id);
+      await deleteComment.handleDelete(id)
     } catch (error) {
-      console.error("Error deleting comment:", error);
+      console.error('Error deleting comment:', error)
       // В случае ошибки, comment возвращается
-      setHiddenIds(prev => prev.filter(itemId => itemId !== id));
+      setHiddenIds(prev => prev.filter(itemId => itemId !== id))
     } finally {
-      setDeletingIds(prev => prev.filter(itemId => itemId !== id));
+      setDeletingIds(prev => prev.filter(itemId => itemId !== id))
     }
-  };
+  }
 
 
   // const handleDelete = async (id: string) => {
@@ -101,9 +109,15 @@ const List = () => {
   //   }
   // };
 
+  const cursorNoData = cursor?.props?.children[0]?.props?.children
+
+  const scrollToTop = () => {
+    listRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
     <div className={styles.content}>
-      <ul className={styles.team}>
+      <ul className={styles.team} ref={listRef}>
         {/*{commentItemsInfinite?.slice().reverse().map((todo: any) => (*/}
 
         {commentItemsInfinite?.pages.map((todo: any) => (
@@ -120,27 +134,32 @@ const List = () => {
               {/*  key={todo.id}*/}
               {/*>*/}
 
-            <span className={styles.coFunderLabel}>{todo.createdAt.slice(0, 10)}</span>
-            <div className={styles.thumb}><img src={stateAvatar} />
+              <span className={styles.coFunderLabel}>{todo.createdAt.slice(0, 10)}</span>
+              <div className={styles.thumb}><img src={stateAvatar} />
 
-            </div>
-            <div className={styles.description}>
-              <h3>{userName}</h3>
-              <p>
-                {todo.text.length > 160 ? `${todo.text.substring(0, 160)}.....` : todo.text}
-                <br />
-                <button onClick={() => handleDelete(todo.id)}
-                        disabled={deleteComment.isPending(todo.id) || deletingIds.includes(todo.id)}
-                >
-                  Delete
-                </button>
-              </p>
-            </div>
-          </li>
+              </div>
+              <div className={styles.description}>
+                <h3>{userName}</h3>
+                <p>
+                  {todo.text.length > 160 ? `${todo.text.substring(0, 160)}.....` : todo.text}
+                  <br />
+                  <button onClick={() => handleDelete(todo.id)}
+                          disabled={deleteComment.isPending(todo.id) || deletingIds.includes(todo.id)}
+                  >
+                    Delete
+                  </button>
+                </p>
+              </div>
+            </li>
           )
         ))}
         {cursor}
       </ul>
+      {cursorNoData &&
+        <div className={styles.upListButton}>
+          <UpListButton onClick={scrollToTop} />
+        </div>
+      }
     </div>
   )
 }

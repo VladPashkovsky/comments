@@ -1,0 +1,58 @@
+.button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    gap: 4px;
+}
+
+.button:hover {
+    animation: move 2s infinite ease;
+}
+
+@keyframes move {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.round {
+    width: 6px;
+    height: 6px;
+    background: #ff2770;
+    border-radius: 50%;
+}
+
+.line {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.two {
+    transform: translateY(-10px);
+}
+
+.three {
+    transform: translateY(-20px);
+}
+
+.four {
+    transform: translateY(-30px);
+}
+
+.five {
+    transform: translateY(-20px);
+}
+
+.six {
+    transform: translateY(-10px);
+}

@@ -30,8 +30,8 @@ body *:after {
     --dark: #3c567c;
     --deg: -86deg;
     --trans: all 0.4s ease 0s;
-
     width: 90vmin;
+    position: relative;
 }
 
 h2 {
@@ -230,6 +230,7 @@ h3 {
     text-decoration: none;
     transition: var(--trans);
 }
+
 .description p button:hover {
     transition: var(--trans);
     color: var(--dark);
@@ -245,4 +246,14 @@ h3 {
     padding: 2px;
     background: #fff;
     margin-right: 2px;
+}
+
+.upListButton {
+    position: absolute;
+    /*left: 12vh;*/
+    /*bottom: 0;*/
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
+    /*bottom: -11vh;*/
+    z-index: 1000;
 }
