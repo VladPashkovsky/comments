@@ -6,7 +6,6 @@ export type TaskState = {
   tasks: Comment[],
   isTasks?: boolean,
   tasksError?: string,
-
   deletedTasks?: string[]
 }
 
@@ -14,7 +13,6 @@ const initialTaskState: TaskState = {
   tasks: [],
   isTasks: false,
   tasksError: '',
-
   deletedTasks: [],
 }
 

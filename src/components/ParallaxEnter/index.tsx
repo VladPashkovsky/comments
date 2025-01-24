@@ -3,6 +3,7 @@ import type { MenuProps } from 'antd'
 import { Dropdown, Modal, Space } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router'
+import { aboutRus, aboutEng } from '../../shared/constants.ts'
 import styles from './style.module.css'
 
 const ParallaxEnter = () => {
@@ -106,10 +107,19 @@ const ParallaxEnter = () => {
             </a>
           </li>
         </ul>
-        <Modal title="ABOUT:" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+        <Modal title="ABOUT:" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} width={1000}>
+          <hr />
+          <br />
+          <img src="../../../public/parallax/images/flag-ru-svgrepo-com.svg"
+               alt="" width={50}
+               style={{ position: 'relative', left: '50%' }} />
+          <p>{aboutRus}</p> <br />
+          <hr />
+          <br />
+          <img src="../../../public/parallax/images/flag-gb-svgrepo-com.svg"
+               alt="" width={50}
+               style={{ position: 'relative', left: '50%' }} />
+          <p>{aboutEng}</p> <br />
         </Modal>
       </header>
       <section id={styles.scene}>

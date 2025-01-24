@@ -44,8 +44,8 @@ const Background = () => {
   const backToLogin = (event: any) => {
     event.preventDefault()
     dispatch(logoutThunk())
-    animateUp()
     dispatch(tasksSlice.actions.removeTasks())
+    animateUp()
   }
 
   return (

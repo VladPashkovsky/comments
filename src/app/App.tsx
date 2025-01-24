@@ -39,9 +39,7 @@ function App() {
         <div className={styles.login_form}>
           <Routes>
           <Route path="/" element={<RequireAuth children={<Login />} />} />
-            {/*<Route path="/" element={<Login />} />*/}
             <Route path="/signup" element={<RegisterAuth children={<Registration />} />} />
-            {/*<Route path="/signup" element={<Registration />} />*/}
           </Routes>
         </div>
       </div>
@@ -58,7 +56,6 @@ function App() {
         <Stars />
 
         <div className={styles.list_button}>
-          {/*<button onClick={handleButtonClick}>L I S T</button>*/}
           <EnergyButton onClick={handleButtonClick} />
         </div>
         {
