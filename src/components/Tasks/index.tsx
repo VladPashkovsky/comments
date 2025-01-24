@@ -5,12 +5,13 @@ import { tasksSlice } from './tasks.slice.ts'
 
 const Tasks = () => {
   const tasks = useAppSelector(tasksSlice.selectors.tasks)
+  const deletedTasks = useAppSelector(tasksSlice.selectors.deletedTasks)
 
   let taskNumber = 0
 
   return (
-  <div className={styles.box}>
-    <div className={styles.user}>
+    <div className={styles.box}>
+      <div className={styles.user}>
         <span className={styles.user_info}>COMMENTS
         </span>
       </div>
@@ -20,8 +21,9 @@ const Tasks = () => {
           <div className={styles.inptBtn}>
             <div className={styles.responseForm}>
               {tasks?.map((todo, index) => (
-                <div key={todo.id} className={styles.responseItem}
-                     ref={index === tasks.length - 1  ? (node) => node && node.scrollIntoView({ behavior: 'smooth' }) : null}>
+                <div key={todo.id}
+                     className={`${deletedTasks?.includes(todo.id!) ? styles.responseItemDeleted : styles.responseItem} `}
+                     ref={index === tasks.length - 1 ? (node) => node && node.scrollIntoView({ behavior: 'smooth' }) : null}>
                   <p className={styles.todoText}>{++taskNumber} - {todo.text}</p>
                 </div>
               ))}

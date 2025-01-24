@@ -200,6 +200,21 @@ body {
     scrollbar-width: none;
 }
 
+.responseItemDeleted {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ff2770;
+    background: linear-gradient(to right, black, #2c121b, #ff2770);;
+    border-radius: 10px;
+    font-size: 1em;
+    color: white;
+    transition: 0.5s;
+}
+
 .responseItem {
     display: flex;
     flex-direction: row;

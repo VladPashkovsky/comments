@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useCommentList } from '../CommentForm/use-comment-list.tsx'
 import { useDeleteComment } from '../CommentForm/use-delete-comment.ts'
 import UpListButton from '../UpListButton'
+import {useDispatch} from 'react-redux'
+import {tasksSlice} from '../Tasks/tasks.slice.ts'
 
 const List = () => {
   const userData = useAppSelector(authSlice.selectors.user) as AuthState
@@ -15,6 +17,7 @@ const List = () => {
   const userName = user?.name
   const userAvatar = user?.image
   const userId = user?.id
+  const dispatch = useDispatch()
 
   const {
     commentItemsInfinite,
@@ -74,6 +77,7 @@ const List = () => {
 
       // Фактическое удаление
       await deleteComment.handleDelete(id)
+      dispatch(tasksSlice.actions.deleteTask(id))
     } catch (error) {
       console.error('Error deleting comment:', error)
       // В случае ошибки, comment возвращается

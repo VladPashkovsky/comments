@@ -21,16 +21,26 @@ const CommentForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const newTodoItem = {
-      text: newTodo,
-    }
+    try {
+      const newTodoItem = {
+        text: newTodo,
+      }
 
-    if (newTodo === '') {
-      return
-    }
+      if (newTodo === '') {
+        return
+      }
 
-    createComment.handleCreate(newTodoItem.text)
-    setNewTodo('')
+      createComment.handleCreate(newTodoItem.text)
+      setNewTodo('')
+    } catch (err) {
+      const ifError = isErrorWithMessage(err)
+      ifError && setError(err.data.message)
+
+      messageApi.open({
+        type: 'error',
+        content: ` ERROR: ${error}`,
+      })
+    }
   }
 
 
