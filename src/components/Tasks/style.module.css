@@ -215,6 +215,10 @@ body {
     transition: 0.5s;
 }
 
+.responseItemDeleted:hover {
+    cursor: auto;
+}
+
 .responseItem {
     display: flex;
     flex-direction: row;
