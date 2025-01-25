@@ -3,16 +3,17 @@ import { createAvatar } from '@dicebear/core'
 import { initials } from '@dicebear/collection'
 import { useAppSelector } from '../../shared/redux.ts'
 import { authSlice, AuthState } from '../Login/auth.slice.ts'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useCommentList } from '../CommentForm/use-comment-list.tsx'
 import { useDeleteComment } from '../CommentForm/use-delete-comment.ts'
 import UpListButton from '../UpListButton'
-import {useDispatch} from 'react-redux'
-import {tasksSlice} from '../Tasks/tasks.slice.ts'
+import { useDispatch } from 'react-redux'
+import { tasksSlice } from '../Tasks/tasks.slice.ts'
 
 const List = () => {
-  const userData = useAppSelector(authSlice.selectors.user) as AuthState
   const updatedUserAvatar = useAppSelector(authSlice.selectors.userImage)
+  const selectedTask = useAppSelector(tasksSlice.selectors.selectedTask)
+  const userData = useAppSelector(authSlice.selectors.user) as AuthState
   const user = userData ? userData.user : null
   const userName = user?.name
   const userAvatar = user?.image
@@ -33,6 +34,13 @@ const List = () => {
   const [hiddenIds, setHiddenIds] = useState<string[]>([])
 
   const listRef = useRef<HTMLUListElement>(null)
+
+  const scrollToRef = useCallback((node: HTMLLIElement | null) => {
+    if (node && selectedTask) {
+      node.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      dispatch(tasksSlice.actions.selectTask(''))
+    }
+  }, [selectedTask, dispatch])
 
   const avatar = createAvatar(initials, {
     seed: userName,
@@ -130,13 +138,8 @@ const List = () => {
 
             <li
               className={`${styles.member} ${styles['co-funder']} ${deletingIds.includes(todo.id) ? styles.slideOut : ''}`}
-              key={todo.id}
+              key={todo.id} ref={todo.id === selectedTask ? scrollToRef : null}
             >
-
-              {/*<li*/}
-              {/*  className={`${styles.member} ${styles['co-funder']} ${deletingIds.includes(todo.id) ? styles.slideOut : ''}`}*/}
-              {/*  key={todo.id}*/}
-              {/*>*/}
 
               <span className={styles.coFunderLabel}>{todo.createdAt.slice(0, 10)}</span>
               <div className={styles.thumb}><img src={stateAvatar} />

@@ -7,6 +7,7 @@ export type TaskState = {
   isTasks?: boolean,
   tasksError?: string,
   deletedTasks?: string[]
+  selectedTask?: string
 }
 
 const initialTaskState: TaskState = {
@@ -14,6 +15,7 @@ const initialTaskState: TaskState = {
   isTasks: false,
   tasksError: '',
   deletedTasks: [],
+  selectedTask: ''
 }
 
 export const tasksSlice = createSlice({
@@ -23,7 +25,8 @@ export const tasksSlice = createSlice({
     tasks: (state: TaskState) => state.tasks,
     isTasks: (state: TaskState) => state.isTasks,
     tasksError: (state: TaskState) => state.tasksError,
-    deletedTasks: (state: TaskState) => state.deletedTasks
+    deletedTasks: (state: TaskState) => state.deletedTasks,
+    selectedTask: (state: TaskState) => state.selectedTask
   },
   reducers: {
     addTasks: (state, action: PayloadAction<Comment>) => {
@@ -42,6 +45,9 @@ export const tasksSlice = createSlice({
     },
     deleteTask: (state, action: PayloadAction<string>) => {
       state.deletedTasks?.push(action.payload)
+    },
+    selectTask: (state, action: PayloadAction<string>) => {
+      state.selectedTask = action.payload
     }
   },
 }).injectInto(rootReducer)
