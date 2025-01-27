@@ -3,7 +3,6 @@ import { MutationObserver, useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../shared/api/query-client.ts'
 import AuthService from './auth-service.ts'
 import { authSlice } from './auth.slice.ts'
-import { UserDataId } from '../../shared/models/types.ts'
 
 
 export const loginThunk =

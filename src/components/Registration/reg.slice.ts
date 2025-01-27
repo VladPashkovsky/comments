@@ -37,16 +37,12 @@ export const regSlice = createSlice({
     },
 
     uploadAvatar: (state, action: PayloadAction<AuthResponse>) => {
-      // state.avatar = action.payload;
-      // state.uploadAvatarError = null;
       state.user = action.payload
       state.isReg = true
       state.regError = ''
     },
 
     uploadAvatarError: (state, action: PayloadAction<string>) => {
-      // state.uploadAvatarError = action.payload;
-      // state.isReg = true
       state.regError = action.payload
       state.isReg = true
     },

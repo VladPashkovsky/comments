@@ -56,6 +56,17 @@ export const authSlice = createSlice({
       state.isActivated = false
     },
 
+    // register: (state, action: PayloadAction<AuthResponse>) => {
+    //   state.user = action.payload
+    //   state.isReg = true
+    //   state.regError = ''
+    // },
+    //
+    // registerError: (state, action: PayloadAction<string>) => {
+    //   state.regError = action.payload
+    //   state.isReg = false
+    // },
+
     uploadAvatar: (state, action: PayloadAction<string>) => {
       state.user!.image = action.payload
       state.isReg = true

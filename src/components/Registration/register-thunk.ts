@@ -1,7 +1,6 @@
 import { AppThunk } from '../../shared/redux.ts'
 import RegService from './reg-service.ts'
-import {authSlice} from '../Login/auth.slice.ts'
-import {regSlice} from './reg.slice.ts'
+import { regSlice } from './reg.slice.ts'
 
 
 export const registerThunk =

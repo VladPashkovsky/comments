@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 import type { MenuProps } from 'antd'
-import { Dropdown, Modal, Space } from 'antd'
+import { Dropdown, Modal, Space, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router'
-import { aboutRus, aboutEng } from '../../shared/constants.ts'
+import { aboutRus, aboutEng } from '../../shared/constants.tsx'
 import styles from './style.module.css'
 
 const ParallaxEnter = () => {
@@ -107,19 +107,18 @@ const ParallaxEnter = () => {
             </a>
           </li>
         </ul>
-        <Modal title="ABOUT:" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} width={1000}>
+        <Modal title="ABOUT:" open={isModalOpen} width={1000} onOk={handleOk} onCancel={handleCancel}
+               footer={[<Button key="submit" type="primary" onClick={handleOk}>OK</Button>]}>
           <hr />
-          <br />
           <img src="../../../public/parallax/images/flag-ru-svgrepo-com.svg"
                alt="" width={50}
                style={{ position: 'relative', left: '50%' }} />
-          <p>{aboutRus}</p> <br />
+          <div style={{fontSize: '15px'}}>{aboutRus}</div> <br />
           <hr />
-          <br />
           <img src="../../../public/parallax/images/flag-gb-svgrepo-com.svg"
                alt="" width={50}
                style={{ position: 'relative', left: '50%' }} />
-          <p>{aboutEng}</p> <br />
+          <div style={{fontSize: '15px'}}>{aboutEng}</div> <br />
         </Modal>
       </header>
       <section id={styles.scene}>

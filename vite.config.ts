@@ -8,14 +8,14 @@ export default defineConfig({
   server: {
     host: true,
     cors: true,
-    port: 5173,
+    port: 5174,
     strictPort: true,
-    hmr: { port: 5173 },
+    hmr: { port: 5174 },
   },
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
+        main: resolve(__dirname, 'index.html')
       },
     },
   },

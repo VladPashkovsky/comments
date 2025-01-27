@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query'
 import { jsonApiInstance } from '../../shared/api/api-instance.ts'
-import  $api  from '../../shared/api/api-intercept.ts'
-import {User, AuthResponse, UserDataLogin, UserDataId} from '../../shared/models/types.ts'
+import $api from '../../shared/api/api-intercept.ts'
+import { AuthResponse, UserDataLogin } from '../../shared/models/types.ts'
 
 export type UserDTO = {
   id: string

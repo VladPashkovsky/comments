@@ -1,9 +1,7 @@
 import React, { FC, JSX, useEffect } from 'react'
 import { useAppSelector } from '../redux.ts'
-import { authSlice } from '../../components/Login/auth.slice.ts'
-import {regSlice} from '../../components/Registration/reg.slice.ts'
+import { regSlice } from '../../components/Registration/reg.slice.ts'
 import { message, notification } from 'antd'
-import { useNavigate } from 'react-router'
 
 
 interface RequireAuthProps {
@@ -14,7 +12,6 @@ const RegisterAuth: FC<RequireAuthProps> = ({ children }) => {
 
   const registerError = useAppSelector(regSlice.selectors.regError)
   const isRegistered = useAppSelector(regSlice.selectors.isReg)
-  let navigate = useNavigate()
 
   const [messageApi, contextHolderMessage] = message.useMessage()
   const [messageRegApi, contextHolderRegMessage] = notification.useNotification()
@@ -52,13 +49,9 @@ const RegisterAuth: FC<RequireAuthProps> = ({ children }) => {
     })
   }
 
-  const navigateBack = () => {
-    navigate('/')
-  }
 
   const showNotification = () => {
     setTimeout(addedNotification, 1000)
-    // setTimeout(navigateBack, 3000)
   }
 
   useEffect(() => {

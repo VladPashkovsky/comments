@@ -3,13 +3,12 @@ import styles from './style.module.css'
 import { createAvatar } from '@dicebear/core'
 import { openPeeps } from '@dicebear/collection'
 import * as React from 'react'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { animated, useSpring } from '@react-spring/web'
 import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
 import { uploadAvatarThunk, uploadImageMutation } from './upload-avatar-thunk.ts'
 import { fileToDataURI, getImageSizes, selectFile, validateFileSize } from '../../shared/models/file.ts'
 import { authSlice, AuthState } from '../Login/auth.slice.ts'
-
 
 const IMAGE_MAX_SIZE = import.meta.env.VITE_IMAGE_MAX_SIZE
 

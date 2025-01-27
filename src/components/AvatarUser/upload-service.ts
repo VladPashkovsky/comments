@@ -1,6 +1,6 @@
 import $api from '../../shared/api/api-intercept.ts'
 import { AxiosResponse } from 'axios'
-import { AuthResponse, UserDataId } from '../../shared/models/types.ts'
+import { AuthResponse } from '../../shared/models/types.ts'
 
 export default class UploadService {
   static async uploadAvatar(data: any): Promise<AxiosResponse> {
