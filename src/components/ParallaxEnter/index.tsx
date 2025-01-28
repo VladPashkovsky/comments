@@ -4,6 +4,9 @@ import { Dropdown, Modal, Space, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router'
 import { aboutRus, aboutEng } from '../../shared/constants.tsx'
+import githubMark from '../../../public/parallax/images/github-mark.svg'
+import ruFlag from "../../../public/parallax/images/flag-ru-svgrepo-com.svg"
+import gbFlag from "../../../public/parallax/images/flag-gb-svgrepo-com.svg"
 import styles from './style.module.css'
 
 const ParallaxEnter = () => {
@@ -32,7 +35,7 @@ const ParallaxEnter = () => {
         </a>
       ),
       key: '0',
-      icon: <img src="../../../public/parallax/images/github-mark.svg" width="32" height="32" />,
+      icon: <img src={githubMark} width="32" height="32" />,
     },
     {
       label: (
@@ -41,7 +44,7 @@ const ParallaxEnter = () => {
         </a>
       ),
       key: '1',
-      icon: <img src="../../../public/parallax/images/github-mark.svg" width="32" height="32" />,
+      icon: <img src={githubMark} width="32" height="32" />,
     },
     {
       type: 'divider',
@@ -110,12 +113,12 @@ const ParallaxEnter = () => {
         <Modal title="ABOUT:" open={isModalOpen} width={1000} onOk={handleOk} onCancel={handleCancel}
                footer={[<Button key="submit" type="primary" onClick={handleOk}>OK</Button>]}>
           <hr />
-          <img src="../../../public/parallax/images/flag-ru-svgrepo-com.svg"
+          <img src={ruFlag}
                alt="" width={50}
                style={{ position: 'relative', left: '50%' }} />
           <div style={{fontSize: '15px'}}>{aboutRus}</div> <br />
           <hr />
-          <img src="../../../public/parallax/images/flag-gb-svgrepo-com.svg"
+          <img src={gbFlag}
                alt="" width={50}
                style={{ position: 'relative', left: '50%' }} />
           <div style={{fontSize: '15px'}}>{aboutEng}</div> <br />
