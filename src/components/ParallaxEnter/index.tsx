@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { Dropdown, Modal, Space, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
@@ -35,7 +35,7 @@ const ParallaxEnter = () => {
         </a>
       ),
       key: '0',
-      icon: <img src={githubMark} width="32" height="32" />,
+      icon: <img src={githubMark} width="32" height="32" alt='flag'/>,
     },
     {
       label: (
@@ -44,7 +44,7 @@ const ParallaxEnter = () => {
         </a>
       ),
       key: '1',
-      icon: <img src={githubMark} width="32" height="32" />,
+      icon: <img src={githubMark} width="32" height="32" alt='flag' />,
     },
     {
       type: 'divider',
@@ -71,7 +71,7 @@ const ParallaxEnter = () => {
   const img3Ref = useRef<HTMLImageElement>(null)
 
   window.addEventListener('scroll', function() {
-    let value = window.scrollY
+    const value = window.scrollY
     if (textRef.current) {
       textRef.current.style.marginTop = value * -1.5 + 'px'
     }

@@ -12,6 +12,9 @@ export default defineConfig({
     strictPort: true,
     hmr: { port: 5174 },
   },
+  preview: {
+    allowedHosts: ['localhost', 'comments.bunch-of-stuff.ru'],
+  },
   build: {
     rollupOptions: {
       input: {
