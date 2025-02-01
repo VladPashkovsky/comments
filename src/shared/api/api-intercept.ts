@@ -2,6 +2,7 @@ import axios from 'axios'
 import { AuthResponse } from '../models/types.ts'
 
 const API_URL = import.meta.env.VITE_API_URL
+// const API_URL = typeof import.meta !== 'undefined' ? import.meta.env.VITE_API_URL : process.env.VITE_API_URL;
 
 const $api = axios.create({
   withCredentials: true,

@@ -1,4 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL
+// const API_URL = typeof import.meta !== 'undefined' ? import.meta.env.VITE_API_URL : process.env.VITE_API_URL;
 
 class ApiError extends Error {
   constructor(public response: Response, public body: string) {
