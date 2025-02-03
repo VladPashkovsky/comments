@@ -26,6 +26,6 @@ export const uploadAvatarThunk =
     }
   }
 
-export const uploadImageMutation = () => useMutation({
+export const useUploadImageMutation = () => useMutation({
   mutationKey: ['avatar'],
 }).isPending

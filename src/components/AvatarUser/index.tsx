@@ -6,7 +6,7 @@ import * as React from 'react'
 import { useMemo } from 'react'
 import { animated, useSpring } from '@react-spring/web'
 import { useAppDispath, useAppSelector } from '../../shared/redux.ts'
-import { uploadAvatarThunk, uploadImageMutation } from './upload-avatar-thunk.ts'
+import { uploadAvatarThunk, useUploadImageMutation } from './upload-avatar-thunk.ts'
 import { fileToDataURI, getImageSizes, selectFile, validateFileSize } from '../../shared/models/file.ts'
 import { authSlice, AuthState } from '../Login/auth.slice.ts'
 
@@ -14,7 +14,7 @@ const IMAGE_MAX_SIZE = import.meta.env.VITE_IMAGE_MAX_SIZE
 
 const AvatarUser = () => {
   const dispatch = useAppDispath()
-  const isUploadImage = uploadImageMutation()
+  const isUploadImage = useUploadImageMutation()
   const { user } = useAppSelector(authSlice.selectors.user) as AuthState
   const userImage = useAppSelector(authSlice.selectors.userImage)
   const userId = user?.id
