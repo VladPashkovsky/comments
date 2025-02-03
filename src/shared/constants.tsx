@@ -7,9 +7,9 @@ export const aboutRus: React.ReactNode = (
     <p style={{ textAlign: 'center' }}>Функциональность проекта:</p>
     <ul style={{marginLeft: '25px'}}>
       <li>JWT авторизация/регистрация нового пользователя.</li>
-      <li>Довавление/изменение аватара пользователя с сохранением в объектном хранилище S3.</li>
-      <li>Добавление пользователем комментариеев либо создание комментариев автоматически.</li>
-      <li>Бесконечнй скролл с постепенной подгрузкой комментариев, созданнх пользователем из базы данных PostgreSQL.</li>
+      <li>Добавление/изменение аватара пользователя с сохранением в объектном хранилище S3.</li>
+      <li>Добавление пользователем комментариев либо создание комментариев автоматически.</li>
+      <li>Бесконечный скролл с постепенной подгрузкой комментариев, созданных пользователем из базы данных PostgreSQL.</li>
       <li>Удаление комментариев пользователя реализовано через Optimistic Updates.</li>
     </ul>
     <br/>
@@ -28,7 +28,7 @@ export const aboutEng: React.ReactNode = (
       <li>Adding/changing a user avatar with saving in S3 cloud object storage.</li>
       <li>Adding comments by the user or creating comments automatically.</li>
       <li>Infinite scroll with gradual loading of comments created by the user from the PostgreSQL database.</li>
-      <li>Deleting user comments is implemented through Optimistic Updates.</li>
+      <li>Deleting user comments is implemented using Optimistic Updates.</li>
     </ul>
     <br/>
     <p style={{ textAlign: 'center' }}>Login - name: admin, password: 123456789 or register as a new user.</p>
