@@ -2,7 +2,7 @@ import React from 'react'
 
 export const aboutRus: React.ReactNode = (
   <>
-    <p style={{textAlign: 'center'}}>COMMENTS - это демонстрационный фуллстек проект, созданный с целью практики применения следующих технологий:</p>
+    <p style={{textAlign: 'center'}}>COMM - это демонстрационный фуллстек проект, созданный с целью практики применения следующих технологий:</p>
     <p style={{textAlign: 'center'}}>Frontend: React, Typescript, Redux Toolkit, Tanstack Query. Backend: Express, Prisma ORM.</p>
     <p style={{ textAlign: 'center' }}>Функциональность проекта:</p>
     <ul style={{marginLeft: '25px'}}>
