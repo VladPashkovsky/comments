@@ -1,0 +1,35 @@
+name: deploy comments
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.11.0
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run lint:types
+  deploy:
+    needs: lint
+    runs-on: ubuntu-latest
+    concurrency:
+      group: comments
+      cancel-in-progress: true
+    steps:
+      - name: SSH Command
+        uses: D3rHase/ssh-command-action@v0.2.2
+        with:
+          host: ${{secrets.COMMENTS_SSH_HOST}}
+          port: ${{secrets.COMMENTS_SSH_PORT}}
+          user: ${{secrets.COMMENTS_SSH_USERNAME}}
+          private_key: ${{secrets.COMMENTS_SSH_PRIVATE_KEY}}
+          command: source ~/.nvm/nvm.sh; ~/webapps/comments/comments_deploy/deploy.sh
+
