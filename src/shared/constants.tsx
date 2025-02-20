@@ -8,7 +8,7 @@ export const aboutRus: React.ReactNode = (
     <ul style={{marginLeft: '25px'}}>
       <li>JWT авторизация/регистрация нового пользователя.</li>
       <li>Добавление/изменение аватара пользователя с сохранением в объектном хранилище S3.</li>
-      <li>Добавление/удаление пользователем комментариев либо создание комментариев автоматически.</li>
+      <li>Добавление/удаление пользователем комментариев либо создание комментариев автоматически, используя Faker API.</li>
       <li>Бесконечный скролл с постепенной подгрузкой комментариев, созданных пользователем из базы данных PostgreSQL.</li>
       <li>Настроен CI/CD через GitHub Actions, с дальнейшим развертыанием в Docker на Linux сервере.</li>
     </ul>
@@ -26,7 +26,7 @@ export const aboutEng: React.ReactNode = (
     <ul style={{marginLeft: '25px'}}>
       <li>JWT authorization/registration of a new user.</li>
       <li>Adding/changing a user avatar with saving in S3 cloud object storage.</li>
-      <li>Adding/deleting comments by the user or creating comments automatically.</li>
+      <li>Adding/deleting comments by the user or creating comments automatically using the Faker API.</li>
       <li>Infinite scroll with gradual loading of comments created by the user from the PostgreSQL database.</li>
       <li>Created a CI/CD Pipeline with Docker and GitHub Actions.</li>
     </ul>
